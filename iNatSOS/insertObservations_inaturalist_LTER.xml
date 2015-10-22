@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sos:InsertObservation
+    xmlns:sos="http://www.opengis.net/sos/2.0"
+    xmlns:swes="http://www.opengis.net/swes/2.0"
+    xmlns:swe="http://www.opengis.net/swe/2.0"
+    xmlns:sml="http://www.opengis.net/sensorML/1.0.1"
+    xmlns:gml="http://www.opengis.net/gml/3.2"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:om="http://www.opengis.net/om/2.0"
+    xmlns:sams="http://www.opengis.net/samplingSpatial/2.0"
+    xmlns:sf="http://www.opengis.net/sampling/2.0"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" service="SOS" version="2.0.0" xsi:schemaLocation="http://www.opengis.net/sos/2.0 http://schemas.opengis.net/sos/2.0/sos.xsd          http://www.opengis.net/samplingSpatial/2.0 http://schemas.opengis.net/samplingSpatial/2.0/spatialSamplingFeature.xsd">
+    <!-- multiple offerings are possible -->
+    
+    <sos:offering>offering:https://www.inaturalist.org/users/simomusa/observations</sos:offering> <!-- offering:https://www.inaturalist.org/users/ + "user": {
+            "login": "simomusa" + /observations -->
+    
+    <sos:observation>
+        <om:OM_Observation gml:id="o2083398"> <!-- o + "id": 2083398 -->
+            <om:type xlink:href="http://www.opengis.net/def/observationType/OGC-OM/2.0/OM_CategoryObservation"/>
+            
+            <om:phenomenonTime>
+                <gml:TimeInstant gml:id="phenomenonTime_o2083398"> <!-- phenomenonTime_o + "id": 2083398 -->
+                    <gml:timePosition>2015-08-27T12:32:16.000+02:00</gml:timePosition> <!-- "time_observed_at": "2015-08-27T12:32:16.000+02:00" -->
+                </gml:TimeInstant>
+            </om:phenomenonTime>
+            
+            <om:resultTime xlink:href="#phenomenonTime_o2083398"/> <!-- #phenomenonTime_o + "id": 2083398 -->
+            
+            <om:procedure xlink:href="https://www.inaturalist.org/users/simomusa" xlink:arcrole="http://sweet.jpl.nasa.gov/2.0/biolAnimal.owl#Human"/> <!-- https://www.inaturalist.org/users/ + "user": {
+            "login": "simomusa" -->
+            
+            <om:observedProperty xlink:href="http://rs.tdwg.org/dwc/terms/taxonID"/>
+            
+            <om:featureOfInterest>
+                <sams:SF_SpatialSamplingFeature gml:id="sample_o2083398"> <!-- sample_o + "id": 2083398 -->
+                    <gml:identifier codeSpace="">http://sp7.irea.cnr.it/sensors/sk.irea.cnr.it/foi/SSF/SP/EPSG:4326/46.168979/8.18923</gml:identifier> <!-- http://sp7.irea.cnr.it/sensors/sk.irea.cnr.it/foi/SSF/SP/EPSG:4326/ + "latitude": "46.168979",
+        "longitude": "8.18923"-->
+                    <gml:name>Lago Paione inferiore</gml:name> <!-- "place_guess": "Lago Paione inferiore" -->
+                    <sf:type xlink:href="http://www.opengis.net/def/samplingFeatureType/OGC-OM/2.0/SF_SamplingPoint"/>
+                    <sf:sampledFeature
+                        xlink:title="Lago Paione inferiore"/> <!-- "place_guess": "Lago Paione inferiore" -->
+                    <sams:shape>
+                        <gml:Point gml:id="p2083398"> <!-- p + "id": 2083398 -->
+                            <gml:pos srsName="http://www.opengis.net/def/crs/EPSG/0/4326">46.168979 8.18923</gml:pos>
+                        </gml:Point>
+                    </sams:shape>
+                </sams:SF_SpatialSamplingFeature>
+            </om:featureOfInterest>
+            
+            <om:result xsi:type="gml:ReferenceType" xlink:href="http://www.inaturalist.org/taxa/475152"/> <!-- http://www.inaturalist.org/taxa/ + "taxon_id": 475152 -->
+            
+        </om:OM_Observation>
+        <!-- End of OM_Observation o1 -->
+    </sos:observation>
+    
+    <sos:observation>
+        <om:OM_Observation gml:id="o2">
+            <om:type xlink:href="http://www.opengis.net/def/observationType/OGC-OM/2.0/OM_Measurement"/>
+            <om:phenomenonTime xlink:href="#phenomenonTime_o2083398"/> <!-- #phenomenonTime_o + "id": 2083398 -->
+            <om:resultTime xlink:href="#phenomenonTime_o2083398"/> <!-- #phenomenonTime_o + "id": 2083398 -->
+            <om:procedure xlink:href="https://www.inaturalist.org/users/simomusa" xlink:arcrole="http://sweet.jpl.nasa.gov/2.0/biolAnimal.owl#Human"/> <!-- https://www.inaturalist.org/users/ + "user": {
+            "login": "simomusa" -->
+            <om:observedProperty xlink:href="http://rs.tdwg.org/dwc/dwcore/MaximumElevationInMeters"/>
+            <om:featureOfInterest xlink:href="#sample_o2083398"/> <!-- #sample_o + "id": 2083398 -->
+            <om:result xsi:type="gml:MeasureType" uom="m">2002</om:result> <!-- "value": "2002" -->
+        </om:OM_Observation>
+    </sos:observation>
+    
+    <sos:observation>
+        <om:OM_Observation gml:id="o3">
+            <om:type xlink:href="http://www.opengis.net/def/observationType/OGC-OM/2.0/OM_CategoryObservation"/>
+            <om:phenomenonTime xlink:href="#phenomenonTime_o2083398"/> <!-- #phenomenonTime_o + "id": 2083398 -->
+            <om:resultTime xlink:href="#phenomenonTime_o2083398"/> <!-- #phenomenonTime_o + "id": 2083398 -->
+            <om:procedure xlink:href="https://www.inaturalist.org/users/simomusa" xlink:arcrole="http://sweet.jpl.nasa.gov/2.0/biolAnimal.owl#Human"/> <!-- https://www.inaturalist.org/users/ + "user": {
+            "login": "simomusa" -->
+            <om:observedProperty xlink:href="http://rs.tdwg.org/dwc/terms/associatedMedia"/>
+            <om:featureOfInterest xlink:href="#sample_o2083398"/> <!-- #sample_o + "id": 2083398 -->
+            <om:result xsi:type="gml:ReferenceType" xlink:href="http://static.inaturalist.org/photos/2491760/large.?1444225594"/> <!-- "large_url": "http://static.inaturalist.org/photos/2491760/large.?1444225594" -->
+        </om:OM_Observation>
+    </sos:observation>
+   
+</sos:InsertObservation>
