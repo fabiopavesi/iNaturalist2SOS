@@ -62,10 +62,10 @@ public class Observation {
     private double positionalAccuracy;
     @JsonProperty("coordinates_obscured")
     private Boolean coordinatesObscured;
-    /*
+    
     @JsonProperty("taxon_id")
     private long taxonId;
-    */
+    
     @JsonProperty("id_please")
     private Boolean idPlease;
     @JsonProperty("time_observed_at_utc")
@@ -125,7 +125,7 @@ public class Observation {
 				+ numIdentificationDisagreements + ", delta=" + delta + ", updatedAt=" + updatedAt
 				+ ", numIdentificationAgreements=" + numIdentificationAgreements + ", license=" + license
 				+ ", geoprivacy=" + geoprivacy + ", positionalAccuracy=" + positionalAccuracy + ", coordinatesObscured="
-				+ coordinatesObscured + /* ", taxonId=" + taxonId + */ ", idPlease=" + idPlease + ", timeObservedAtUTC="
+				+ coordinatesObscured + ", taxonId=" + taxonId + ", idPlease=" + idPlease + ", timeObservedAtUTC="
 				+ timeObservedAtUTC + ", userId=" + userId + ", timeObservedAt=" + timeObservedAt
 				+ ", observedOnString=" + observedOnString + ", shortDescription=" + shortDescription + ", timeZone="
 				+ timeZone + ", outOfRange=" + outOfRange + ", description=" + description + ", userDotLogin="
@@ -247,14 +247,14 @@ public class Observation {
 	public void setCoordinatesObscured(Boolean coordinatesObscured) {
 		this.coordinatesObscured = coordinatesObscured;
 	}
-	/*
+	
 	public long getTaxonId() {
 		return taxonId;
 	}
 	public void setTaxonId(long taxonId) {
 		this.taxonId = taxonId;
 	}
-	*/
+	
 	public Boolean getIdPlease() {
 		return idPlease;
 	}

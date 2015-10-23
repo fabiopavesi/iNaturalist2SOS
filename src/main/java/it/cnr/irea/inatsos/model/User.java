@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -15,6 +17,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Entity
 @XmlRootElement
 @JsonIgnoreProperties(ignoreUnknown=true)
+@NamedQueries({
+	@NamedQuery(name="User.findAll", query="SELECT a FROM User a")
+})
 public class User {
 	@Id
 	private long id;

@@ -21,5 +21,5 @@ public class INatSosApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(INatSosApplication.class, args);
-    }
+    } 
 }
