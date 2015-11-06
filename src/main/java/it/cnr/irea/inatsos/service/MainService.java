@@ -213,6 +213,10 @@ public class MainService {
 			return null;
 		}
 	}
+
+	public String fillInSensorDescribe(User user) throws IOException {
+		return fillInSensor(user).replaceAll("swes:InsertSensor", "swes:DescribeSensor");
+	}
 	
 	public String fillInSensor(User user) throws IOException {
 		String result = "";
