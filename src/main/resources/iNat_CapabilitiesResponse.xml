@@ -1,0 +1,935 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sos:Capabilities xmlns:sos="http://www.opengis.net/sos/2.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ows="http://www.opengis.net/ows/1.1"
+    xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:fes="http://www.opengis.net/fes/2.0"
+    xmlns:swes="http://www.opengis.net/swes/2.0" xmlns:gml="http://www.opengis.net/gml/3.2"
+    version="2.0.0"
+    xsi:schemaLocation="http://www.opengis.net/fes/2.0 http://schemas.opengis.net/filter/2.0/filterAll.xsd http://inspire.ec.europa.eu/schemas/common/1.0 http://inspire.ec.europa.eu/schemas/common/1.0/common.xsd http://www.opengis.net/swes/2.0 http://schemas.opengis.net/swes/2.0/swes.xsd http://www.opengis.net/sos/2.0 http://schemas.opengis.net/sos/2.0/sosGetCapabilities.xsd http://inspire.ec.europa.eu/schemas/inspire_dls/1.0 http://inspire.ec.europa.eu/schemas/inspire_dls/1.0/inspire_dls.xsd http://www.opengis.net/gml/3.2 http://schemas.opengis.net/gml/3.2.1/gml.xsd http://www.opengis.net/ows/1.1 http://schemas.opengis.net/ows/1.1.0/owsAll.xsd">
+    <!-- TODO: cambiare prova/inaturalist_sos con URL reale -->
+    <ows:ServiceIdentification>
+        <ows:Title xml:lang="eng">Sensor Web Enablement for iNaturalist</ows:Title>
+        <ows:Abstract xml:lang="eng">iNaturalist Sensor Observation Service - Data Access for the Sensor Web</ows:Abstract>
+        <ows:ServiceType>OGC:SOS</ows:ServiceType>
+        <ows:ServiceTypeVersion>1.0.0</ows:ServiceTypeVersion>
+        <ows:ServiceTypeVersion>2.0.0</ows:ServiceTypeVersion>
+        <ows:Profile>http://www.opengis.net/extension/SOSDO/1.0/observationDeletion</ows:Profile>
+        <ows:Profile>http://www.opengis.net/spec/OMXML/1.0/conf/categoryObservation</ows:Profile>
+        <ows:Profile>http://www.opengis.net/spec/OMXML/1.0/conf/countObservation</ows:Profile>
+        <ows:Profile>http://www.opengis.net/spec/OMXML/1.0/conf/geometryObservation</ows:Profile>
+        <ows:Profile>http://www.opengis.net/spec/OMXML/1.0/conf/measurement</ows:Profile>
+        <ows:Profile>http://www.opengis.net/spec/OMXML/1.0/conf/textObservation</ows:Profile>
+        <ows:Profile>http://www.opengis.net/spec/OMXML/1.0/conf/truthObservation</ows:Profile>
+        <ows:Profile>http://www.opengis.net/spec/OMXML/2.0/conf/categoryObservation</ows:Profile>
+        <ows:Profile>http://www.opengis.net/spec/OMXML/2.0/conf/countObservation</ows:Profile>
+        <ows:Profile>http://www.opengis.net/spec/OMXML/2.0/conf/geometryObservation</ows:Profile>
+        <ows:Profile>http://www.opengis.net/spec/OMXML/2.0/conf/measurement</ows:Profile>
+        <ows:Profile>http://www.opengis.net/spec/OMXML/2.0/conf/samplingCurve</ows:Profile>
+        <ows:Profile>http://www.opengis.net/spec/OMXML/2.0/conf/samplingPoint</ows:Profile>
+        <ows:Profile>http://www.opengis.net/spec/OMXML/2.0/conf/samplingSurface</ows:Profile>
+        <ows:Profile>http://www.opengis.net/spec/OMXML/2.0/conf/spatialSampling</ows:Profile>
+        <ows:Profile>http://www.opengis.net/spec/OMXML/2.0/conf/textObservation</ows:Profile>
+        <ows:Profile>http://www.opengis.net/spec/OMXML/2.0/conf/truthObservation</ows:Profile>
+        <ows:Profile>http://www.opengis.net/spec/SOS/1.0/conf/core</ows:Profile>
+        <ows:Profile>http://www.opengis.net/spec/SOS/1.0/conf/enhanced</ows:Profile>
+        <ows:Profile>http://www.opengis.net/spec/SOS/2.0/conf/core</ows:Profile>
+        <ows:Profile>http://www.opengis.net/spec/SOS/2.0/conf/daRetrieval</ows:Profile>
+        <ows:Profile>http://www.opengis.net/spec/SOS/2.0/conf/exi</ows:Profile>
+        <ows:Profile>http://www.opengis.net/spec/SOS/2.0/conf/foiRetrieval</ows:Profile>
+        <ows:Profile>http://www.opengis.net/spec/SOS/2.0/conf/insertionCap</ows:Profile>
+        <ows:Profile>http://www.opengis.net/spec/SOS/2.0/conf/json</ows:Profile>
+        <ows:Profile>http://www.opengis.net/spec/SOS/2.0/conf/kvp-core</ows:Profile>
+        <ows:Profile>http://www.opengis.net/spec/SOS/2.0/conf/obsByIdRetrieval</ows:Profile>
+        <ows:Profile>http://www.opengis.net/spec/SOS/2.0/conf/obsInsertion</ows:Profile>
+        <ows:Profile>http://www.opengis.net/spec/SOS/2.0/conf/pox</ows:Profile>
+        <ows:Profile>http://www.opengis.net/spec/SOS/2.0/conf/rest</ows:Profile>
+        <ows:Profile>http://www.opengis.net/spec/SOS/2.0/conf/resultInsertion</ows:Profile>
+        <ows:Profile>http://www.opengis.net/spec/SOS/2.0/conf/resultRetrieval</ows:Profile>
+        <ows:Profile>http://www.opengis.net/spec/SOS/2.0/conf/sensorDeletion</ows:Profile>
+        <ows:Profile>http://www.opengis.net/spec/SOS/2.0/conf/sensorInsertion</ows:Profile>
+        <ows:Profile>http://www.opengis.net/spec/SOS/2.0/conf/soap</ows:Profile>
+        <ows:Profile>http://www.opengis.net/spec/SOS/2.0/conf/updateSensorDescription</ows:Profile>
+        <ows:Profile>http://www.opengis.net/spec/SWE/2.0/conf/core</ows:Profile>
+        <ows:Profile>http://www.opengis.net/spec/SWE/2.0/conf/general-encoding-rules</ows:Profile>
+        <ows:Profile>http://www.opengis.net/spec/SWE/2.0/conf/text-encoding-rules</ows:Profile>
+        <ows:Profile>http://www.opengis.net/spec/SWE/2.0/conf/uml-block-components</ows:Profile>
+        <ows:Profile>http://www.opengis.net/spec/SWE/2.0/conf/uml-record-components</ows:Profile>
+        <ows:Profile>http://www.opengis.net/spec/SWE/2.0/conf/uml-simple-components</ows:Profile>
+        <ows:Profile>http://www.opengis.net/spec/SWE/2.0/conf/uml-simple-encodings</ows:Profile>
+        <ows:Profile>http://www.opengis.net/spec/SWE/2.0/conf/xsd-block-components</ows:Profile>
+        <ows:Profile>http://www.opengis.net/spec/SWE/2.0/conf/xsd-record-components</ows:Profile>
+        <ows:Profile>http://www.opengis.net/spec/SWE/2.0/conf/xsd-simple-components</ows:Profile>
+        <ows:Profile>http://www.opengis.net/spec/SWE/2.0/conf/xsd-simple-encodings</ows:Profile>
+        <ows:Profile>http://www.opengis.net/spec/waterml/2.0/conf/uml-measurement-timeries-tvp-observation</ows:Profile>
+        <ows:Profile>http://www.opengis.net/spec/waterml/2.0/conf/uml-timeseries-tvp-observation</ows:Profile>
+        <ows:Profile>http://www.opengis.net/spec/waterml/2.0/conf/xsd-measurement-timeseries-tvp</ows:Profile>
+        <ows:Profile>http://www.opengis.net/spec/waterml/2.0/conf/xsd-timeseries-observation</ows:Profile>
+        <ows:Profile>http://www.opengis.net/spec/waterml/2.0/conf/xsd-timeseries-tvp-observation</ows:Profile>
+        <ows:Profile>http://www.opengis.net/spec/waterml/2.0/conf/xsd-xml-rules</ows:Profile>
+        <ows:Fees>NONE</ows:Fees>
+        <ows:AccessConstraints>NONE</ows:AccessConstraints>
+    </ows:ServiceIdentification>
+    <ows:ServiceProvider>
+        <ows:ProviderName>IREA</ows:ProviderName>
+        <ows:ProviderSite xlink:href="http://www.irea.cnr.it"/>
+        <ows:ServiceContact>
+            <ows:IndividualName>TBA</ows:IndividualName>
+            <ows:PositionName>TBA</ows:PositionName>
+            <ows:ContactInfo>
+                <ows:Phone>
+                    <ows:Voice>+390223699595</ows:Voice>
+                </ows:Phone>
+                <ows:Address>
+                    <ows:DeliveryPoint>Via Alfonso Corti, 12</ows:DeliveryPoint>
+                    <ows:City>Milano</ows:City>
+                    <ows:PostalCode>20133</ows:PostalCode>
+                    <ows:Country>Italy</ows:Country>
+                    <ows:ElectronicMailAddress>milano@irea.cnr.it</ows:ElectronicMailAddress>
+                </ows:Address>
+            </ows:ContactInfo>
+        </ows:ServiceContact>
+    </ows:ServiceProvider>
+    <ows:OperationsMetadata>
+        <ows:Operation name="Batch">
+            <ows:DCP>
+                <ows:HTTP>
+                    <ows:Post xlink:href="http://prova/inaturalist_sos/service/json">
+                        <ows:Constraint name="Content-Type">
+                            <ows:AllowedValues>
+                                <ows:Value>application/json</ows:Value>
+                            </ows:AllowedValues>
+                        </ows:Constraint>
+                    </ows:Post>
+                </ows:HTTP>
+            </ows:DCP>
+        </ows:Operation>
+        <!-- Describe Sensor -->
+        <ows:Operation name="DescribeSensor">
+            <ows:DCP>
+                <ows:HTTP>
+                    <ows:Get xlink:href="http://prova/inaturalist_sos/service/kvp?">
+                        <ows:Constraint name="Content-Type">
+                            <ows:AllowedValues>
+                                <ows:Value>application/x-kvp</ows:Value>
+                            </ows:AllowedValues>
+                        </ows:Constraint>
+                    </ows:Get>
+                    <ows:Post xlink:href="http://prova/inaturalist_sos/service/exi">
+                        <ows:Constraint name="Content-Type">
+                            <ows:AllowedValues>
+                                <ows:Value>application/exi</ows:Value>
+                            </ows:AllowedValues>
+                        </ows:Constraint>
+                    </ows:Post>
+                    <ows:Post xlink:href="http://prova/inaturalist_sos/service/json">
+                        <ows:Constraint name="Content-Type">
+                            <ows:AllowedValues>
+                                <ows:Value>application/json</ows:Value>
+                            </ows:AllowedValues>
+                        </ows:Constraint>
+                    </ows:Post>
+                    <ows:Post xlink:href="http://prova/inaturalist_sos/service/pox">
+                        <ows:Constraint name="Content-Type">
+                            <ows:AllowedValues>
+                                <ows:Value>application/xml</ows:Value>
+                                <ows:Value>text/xml</ows:Value>
+                            </ows:AllowedValues>
+                        </ows:Constraint>
+                    </ows:Post>
+                    <ows:Post xlink:href="http://prova/inaturalist_sos/service/soap">
+                        <ows:Constraint name="Content-Type">
+                            <ows:AllowedValues>
+                                <ows:Value>application/soap+xml</ows:Value>
+                            </ows:AllowedValues>
+                        </ows:Constraint>
+                    </ows:Post>
+                </ows:HTTP>
+            </ows:DCP>
+            <ows:Parameter name="procedure">
+                <ows:AllowedValues>
+                    <!-- multiple values possible -->
+                    <ows:Value>https://www.inaturalist.org/users/oggioniale</ows:Value>
+                </ows:AllowedValues>
+            </ows:Parameter>
+            <ows:Parameter name="procedureDescriptionFormat">
+                <ows:AllowedValues>
+                    <ows:Value>http://www.opengis.net/sensorML/1.0.1</ows:Value>
+                    <ows:Value>http://www.opengis.net/sensorml/2.0</ows:Value>
+                    <ows:Value>http://www.opengis.net/waterml/2.0/observationProcess</ows:Value>
+                </ows:AllowedValues>
+            </ows:Parameter>
+            <ows:Parameter name="validTime">
+                <ows:AnyValue/>
+            </ows:Parameter>
+        </ows:Operation>
+        <ows:Operation name="GetCapabilities">
+            <ows:DCP>
+                <ows:HTTP>
+                    <ows:Get xlink:href="http://prova/inaturalist_sos/service/kvp?">
+                        <ows:Constraint name="Content-Type">
+                            <ows:AllowedValues>
+                                <ows:Value>application/x-kvp</ows:Value>
+                            </ows:AllowedValues>
+                        </ows:Constraint>
+                    </ows:Get>
+                    <ows:Post xlink:href="http://prova/inaturalist_sos/service/exi">
+                        <ows:Constraint name="Content-Type">
+                            <ows:AllowedValues>
+                                <ows:Value>application/exi</ows:Value>
+                            </ows:AllowedValues>
+                        </ows:Constraint>
+                    </ows:Post>
+                    <ows:Post xlink:href="http://prova/inaturalist_sos/service/json">
+                        <ows:Constraint name="Content-Type">
+                            <ows:AllowedValues>
+                                <ows:Value>application/json</ows:Value>
+                            </ows:AllowedValues>
+                        </ows:Constraint>
+                    </ows:Post>
+                    <ows:Post xlink:href="http://prova/inaturalist_sos/service/pox">
+                        <ows:Constraint name="Content-Type">
+                            <ows:AllowedValues>
+                                <ows:Value>application/xml</ows:Value>
+                                <ows:Value>text/xml</ows:Value>
+                            </ows:AllowedValues>
+                        </ows:Constraint>
+                    </ows:Post>
+                    <ows:Post xlink:href="http://prova/inaturalist_sos/service/soap">
+                        <ows:Constraint name="Content-Type">
+                            <ows:AllowedValues>
+                                <ows:Value>application/soap+xml</ows:Value>
+                            </ows:AllowedValues>
+                        </ows:Constraint>
+                    </ows:Post>
+                </ows:HTTP>
+            </ows:DCP>
+            <ows:Parameter name="AcceptFormats">
+                <ows:AllowedValues>
+                    <ows:Value>application/xml</ows:Value>
+                </ows:AllowedValues>
+            </ows:Parameter>
+            <ows:Parameter name="AcceptVersions">
+                <ows:AllowedValues>
+                    <ows:Value>1.0.0</ows:Value>
+                    <ows:Value>2.0.0</ows:Value>
+                </ows:AllowedValues>
+            </ows:Parameter>
+            <ows:Parameter name="Sections">
+                <ows:AllowedValues>
+                    <ows:Value>All</ows:Value>
+                    <ows:Value>Contents</ows:Value>
+                    <ows:Value>FilterCapabilities</ows:Value>
+                    <ows:Value>InsertionCapabilities</ows:Value>
+                    <ows:Value>OperationsMetadata</ows:Value>
+                    <ows:Value>ServiceIdentification</ows:Value>
+                    <ows:Value>ServiceProvider</ows:Value>
+                </ows:AllowedValues>
+            </ows:Parameter>
+            <ows:Parameter name="updateSequence">
+                <ows:AnyValue/>
+            </ows:Parameter>
+        </ows:Operation>
+        <ows:Operation name="GetFeatureOfInterest">
+            <ows:DCP>
+                <ows:HTTP>
+                    <ows:Get xlink:href="http://prova/inaturalist_sos/service/kvp?">
+                        <ows:Constraint name="Content-Type">
+                            <ows:AllowedValues>
+                                <ows:Value>application/x-kvp</ows:Value>
+                            </ows:AllowedValues>
+                        </ows:Constraint>
+                    </ows:Get>
+                    <ows:Post xlink:href="http://prova/inaturalist_sos/service/exi">
+                        <ows:Constraint name="Content-Type">
+                            <ows:AllowedValues>
+                                <ows:Value>application/exi</ows:Value>
+                            </ows:AllowedValues>
+                        </ows:Constraint>
+                    </ows:Post>
+                    <ows:Post xlink:href="http://prova/inaturalist_sos/service/json">
+                        <ows:Constraint name="Content-Type">
+                            <ows:AllowedValues>
+                                <ows:Value>application/json</ows:Value>
+                            </ows:AllowedValues>
+                        </ows:Constraint>
+                    </ows:Post>
+                    <ows:Post xlink:href="http://prova/inaturalist_sos/service/pox">
+                        <ows:Constraint name="Content-Type">
+                            <ows:AllowedValues>
+                                <ows:Value>application/xml</ows:Value>
+                                <ows:Value>text/xml</ows:Value>
+                            </ows:AllowedValues>
+                        </ows:Constraint>
+                    </ows:Post>
+                    <ows:Post xlink:href="http://prova/inaturalist_sos/service/soap">
+                        <ows:Constraint name="Content-Type">
+                            <ows:AllowedValues>
+                                <ows:Value>application/soap+xml</ows:Value>
+                            </ows:AllowedValues>
+                        </ows:Constraint>
+                    </ows:Post>
+                </ows:HTTP>
+            </ows:DCP>
+            <ows:Parameter name="featureOfInterest">
+                <ows:AllowedValues>
+                    <ows:Value>http://geoserver.ise.cnr.it/ise_env/ows?service=WFS&amp;version=1.0.0&amp;request=GetFeature&amp;typeName=ise_env:Alserio_lake</ows:Value>
+                </ows:AllowedValues>
+            </ows:Parameter>
+            <ows:Parameter name="observedProperty">
+                <ows:AllowedValues>
+                    <ows:Value>http://sp7.irea.cnr.it/ObservablePropertiesUnion?offering=offering:http://sp7.irea.cnr.it/procedure/core_sampler/observations</ows:Value>
+                    <ows:Value>http://sp7.irea.cnr.it/voc/CACO3/</ows:Value>
+                    <ows:Value>http://sp7.irea.cnr.it/voc/LOI/</ows:Value>
+                    <ows:Value>http://sp7.irea.cnr.it/voc/OC/</ows:Value>
+                    <ows:Value>http://sp7.irea.cnr.it/voc/current/DW/</ows:Value>
+                    <ows:Value>http://sp7.irea.cnr.it/voc/lengthOfVarve/</ows:Value>
+                    <ows:Value>http://vocab.nerc.ac.uk/collection/P01/current/CATAVT10/</ows:Value>
+                    <ows:Value>http://vocab.nerc.ac.uk/collection/P01/current/EWS1MX01/</ows:Value>
+                    <ows:Value>http://vocab.nerc.ac.uk/collection/P02/current/CBSD/</ows:Value>
+                    <ows:Value>http://vocab.nerc.ac.uk/collection/P02/current/NTSD/</ows:Value>
+                    <ows:Value>http://vocab.nerc.ac.uk/collection/P02/current/SAGE/</ows:Value>
+                    <ows:Value>http://vocab.nerc.ac.uk/collection/P02/current/TRIS/</ows:Value>
+                    <ows:Value>http://www.52north.org/test/observableProperty/9_1</ows:Value>
+                    <ows:Value>http://www.52north.org/test/observableProperty/9_2</ows:Value>
+                    <ows:Value>http://www.52north.org/test/observableProperty/9_3</ows:Value>
+                    <ows:Value>http://www.52north.org/test/observableProperty/9_4</ows:Value>
+                    <ows:Value>http://www.52north.org/test/observableProperty/9_5</ows:Value>
+                    <ows:Value>http://www.52north.org/test/observableProperty/9_6</ows:Value>
+                    <ows:Value>http://www.52north.org/test/observableProperty/9_7</ows:Value>
+                    <ows:Value>http://www.opengis.net/def/property/OGC/0/PhenomenonTime</ows:Value>
+                </ows:AllowedValues>
+            </ows:Parameter>
+            <ows:Parameter name="procedure">
+                <ows:AllowedValues>
+                    <ows:Value>http://sp7.irea.cnr.it/procedure/core_sampler</ows:Value>
+                    <ows:Value>http://sp7.irea.cnr.it/sensors/pincopallino/procedure/noManufacturerDeclared/noModelDeclared/noSerialNumberDeclared/20151121043422200_81165</ows:Value>
+                    <ows:Value>http://www.52north.org/test/procedure/9</ows:Value>
+                </ows:AllowedValues>
+            </ows:Parameter>
+            <ows:Parameter name="spatialFilter">
+                <ows:AllowedValues>
+                    <ows:Range>
+                        <ows:MinimumValue>45.786389 9.216667</ows:MinimumValue>
+                        <ows:MaximumValue>45.786389 9.216667</ows:MaximumValue>
+                    </ows:Range>
+                </ows:AllowedValues>
+            </ows:Parameter>
+        </ows:Operation>
+        <ows:Operation name="GetObservation">
+            <ows:DCP>
+                <ows:HTTP>
+                    <ows:Get xlink:href="http://prova/inaturalist_sos/service/kvp?">
+                        <ows:Constraint name="Content-Type">
+                            <ows:AllowedValues>
+                                <ows:Value>application/x-kvp</ows:Value>
+                            </ows:AllowedValues>
+                        </ows:Constraint>
+                    </ows:Get>
+                    <ows:Post xlink:href="http://prova/inaturalist_sos/service/exi">
+                        <ows:Constraint name="Content-Type">
+                            <ows:AllowedValues>
+                                <ows:Value>application/exi</ows:Value>
+                            </ows:AllowedValues>
+                        </ows:Constraint>
+                    </ows:Post>
+                    <ows:Post xlink:href="http://prova/inaturalist_sos/service/json">
+                        <ows:Constraint name="Content-Type">
+                            <ows:AllowedValues>
+                                <ows:Value>application/json</ows:Value>
+                            </ows:AllowedValues>
+                        </ows:Constraint>
+                    </ows:Post>
+                    <ows:Post xlink:href="http://prova/inaturalist_sos/service/pox">
+                        <ows:Constraint name="Content-Type">
+                            <ows:AllowedValues>
+                                <ows:Value>application/xml</ows:Value>
+                                <ows:Value>text/xml</ows:Value>
+                            </ows:AllowedValues>
+                        </ows:Constraint>
+                    </ows:Post>
+                    <ows:Post xlink:href="http://prova/inaturalist_sos/service/soap">
+                        <ows:Constraint name="Content-Type">
+                            <ows:AllowedValues>
+                                <ows:Value>application/soap+xml</ows:Value>
+                            </ows:AllowedValues>
+                        </ows:Constraint>
+                    </ows:Post>
+                </ows:HTTP>
+            </ows:DCP>
+            <ows:Parameter name="featureOfInterest">
+                <ows:AllowedValues>
+                    <ows:Value>http://geoserver.ise.cnr.it/ise_env/ows?service=WFS&amp;version=1.0.0&amp;request=GetFeature&amp;typeName=ise_env:Alserio_lake</ows:Value>
+                </ows:AllowedValues>
+            </ows:Parameter>
+            <ows:Parameter name="observedProperty">
+                <ows:AllowedValues>
+                    <ows:Value>http://sp7.irea.cnr.it/ObservablePropertiesUnion?offering=offering:http://sp7.irea.cnr.it/procedure/core_sampler/observations</ows:Value>
+                    <ows:Value>http://sp7.irea.cnr.it/voc/CACO3/</ows:Value>
+                    <ows:Value>http://sp7.irea.cnr.it/voc/LOI/</ows:Value>
+                    <ows:Value>http://sp7.irea.cnr.it/voc/OC/</ows:Value>
+                    <ows:Value>http://sp7.irea.cnr.it/voc/current/DW/</ows:Value>
+                    <ows:Value>http://sp7.irea.cnr.it/voc/lengthOfVarve/</ows:Value>
+                    <ows:Value>http://vocab.nerc.ac.uk/collection/P01/current/CATAVT10/</ows:Value>
+                    <ows:Value>http://vocab.nerc.ac.uk/collection/P01/current/EWS1MX01/</ows:Value>
+                    <ows:Value>http://vocab.nerc.ac.uk/collection/P02/current/CBSD/</ows:Value>
+                    <ows:Value>http://vocab.nerc.ac.uk/collection/P02/current/NTSD/</ows:Value>
+                    <ows:Value>http://vocab.nerc.ac.uk/collection/P02/current/SAGE/</ows:Value>
+                    <ows:Value>http://vocab.nerc.ac.uk/collection/P02/current/TRIS/</ows:Value>
+                    <ows:Value>http://www.52north.org/test/observableProperty/9_1</ows:Value>
+                    <ows:Value>http://www.52north.org/test/observableProperty/9_2</ows:Value>
+                    <ows:Value>http://www.52north.org/test/observableProperty/9_3</ows:Value>
+                    <ows:Value>http://www.52north.org/test/observableProperty/9_4</ows:Value>
+                    <ows:Value>http://www.52north.org/test/observableProperty/9_5</ows:Value>
+                    <ows:Value>http://www.52north.org/test/observableProperty/9_6</ows:Value>
+                    <ows:Value>http://www.52north.org/test/observableProperty/9_7</ows:Value>
+                    <ows:Value>http://www.opengis.net/def/property/OGC/0/PhenomenonTime</ows:Value>
+                </ows:AllowedValues>
+            </ows:Parameter>
+            <ows:Parameter name="offering">
+                <ows:AllowedValues>
+                    <ows:Value>http://www.52north.org/test/offering/9</ows:Value>
+                    <ows:Value>offering:http://sp7.irea.cnr.it/procedure/core_sampler/observations</ows:Value>
+                    <ows:Value>offering:http://sp7.irea.cnr.it/sensors/pincopallino/procedure/noManufacturerDeclared/noModelDeclared/noSerialNumberDeclared/20151121043422200_81165/observations</ows:Value>
+                </ows:AllowedValues>
+            </ows:Parameter>
+            <ows:Parameter name="procedure">
+                <ows:AllowedValues>
+                    <ows:Value>http://sp7.irea.cnr.it/procedure/core_sampler</ows:Value>
+                    <ows:Value>http://sp7.irea.cnr.it/sensors/pincopallino/procedure/noManufacturerDeclared/noModelDeclared/noSerialNumberDeclared/20151121043422200_81165</ows:Value>
+                    <ows:Value>http://www.52north.org/test/procedure/9</ows:Value>
+                </ows:AllowedValues>
+            </ows:Parameter>
+            <ows:Parameter name="responseFormat">
+                <ows:AllowedValues>
+                    <ows:Value>application/json</ows:Value>
+                    <ows:Value>http://dd.eionet.europa.eu/schemaset/id2011850eu-1.0</ows:Value>
+                    <ows:Value>http://www.opengis.net/om/2.0</ows:Value>
+                </ows:AllowedValues>
+            </ows:Parameter>
+            <ows:Parameter name="spatialFilter">
+                <ows:AllowedValues>
+                    <ows:Range>
+                        <ows:MinimumValue>45.786389 9.216667</ows:MinimumValue>
+                        <ows:MaximumValue>45.786389 9.216667</ows:MaximumValue>
+                    </ows:Range>
+                </ows:AllowedValues>
+            </ows:Parameter>
+            <ows:Parameter name="temporalFilter">
+                <ows:AllowedValues>
+                    <ows:Range>
+                        <ows:MinimumValue>2014-06-15T09:00:00.000Z</ows:MinimumValue>
+                        <ows:MaximumValue>2014-06-15T10:00:00.000Z</ows:MaximumValue>
+                    </ows:Range>
+                </ows:AllowedValues>
+            </ows:Parameter>
+        </ows:Operation>
+        <ows:Operation name="GetObservationById">
+            <ows:DCP>
+                <ows:HTTP>
+                    <ows:Get xlink:href="http://prova/inaturalist_sos/service/kvp?">
+                        <ows:Constraint name="Content-Type">
+                            <ows:AllowedValues>
+                                <ows:Value>application/x-kvp</ows:Value>
+                            </ows:AllowedValues>
+                        </ows:Constraint>
+                    </ows:Get>
+                    <ows:Post xlink:href="http://prova/inaturalist_sos/service/exi">
+                        <ows:Constraint name="Content-Type">
+                            <ows:AllowedValues>
+                                <ows:Value>application/exi</ows:Value>
+                            </ows:AllowedValues>
+                        </ows:Constraint>
+                    </ows:Post>
+                    <ows:Post xlink:href="http://prova/inaturalist_sos/service/json">
+                        <ows:Constraint name="Content-Type">
+                            <ows:AllowedValues>
+                                <ows:Value>application/json</ows:Value>
+                            </ows:AllowedValues>
+                        </ows:Constraint>
+                    </ows:Post>
+                    <ows:Post xlink:href="http://prova/inaturalist_sos/service/pox">
+                        <ows:Constraint name="Content-Type">
+                            <ows:AllowedValues>
+                                <ows:Value>application/xml</ows:Value>
+                                <ows:Value>text/xml</ows:Value>
+                            </ows:AllowedValues>
+                        </ows:Constraint>
+                    </ows:Post>
+                    <ows:Post xlink:href="http://prova/inaturalist_sos/service/soap">
+                        <ows:Constraint name="Content-Type">
+                            <ows:AllowedValues>
+                                <ows:Value>application/soap+xml</ows:Value>
+                            </ows:AllowedValues>
+                        </ows:Constraint>
+                    </ows:Post>
+                </ows:HTTP>
+            </ows:DCP>
+            <ows:Parameter name="observation">
+                <ows:AnyValue/>
+            </ows:Parameter>
+        </ows:Operation>
+        <ows:Parameter name="crs">
+            <ows:AllowedValues>
+                <ows:Value>http://www.opengis.net/def/crs/EPSG/0/31466</ows:Value>
+                <ows:Value>http://www.opengis.net/def/crs/EPSG/0/31467</ows:Value>
+                <ows:Value>http://www.opengis.net/def/crs/EPSG/0/4258</ows:Value>
+                <ows:Value>http://www.opengis.net/def/crs/EPSG/0/4326</ows:Value>
+                <ows:Value>http://www.opengis.net/def/crs/EPSG/0/4979</ows:Value>
+            </ows:AllowedValues>
+        </ows:Parameter>
+        <ows:Parameter name="language">
+            <ows:AllowedValues>
+                <ows:Value>eng</ows:Value>
+                <ows:Value>ita</ows:Value>
+            </ows:AllowedValues>
+        </ows:Parameter>
+        <ows:Parameter name="service">
+            <ows:AllowedValues>
+                <ows:Value>SOS</ows:Value>
+            </ows:AllowedValues>
+        </ows:Parameter>
+        <ows:Parameter name="version">
+            <ows:AllowedValues>
+                <ows:Value>1.0.0</ows:Value>
+                <ows:Value>2.0.0</ows:Value>
+            </ows:AllowedValues>
+        </ows:Parameter>
+        <ows:ExtendedCapabilities>
+            <inspire_dls:ExtendedCapabilities
+                xmlns:inspire_common="http://inspire.ec.europa.eu/schemas/common/1.0"
+                xmlns:inspire_dls="http://inspire.ec.europa.eu/schemas/inspire_dls/1.0">
+                <inspire_common:ResourceLocator>
+                    <inspire_common:URL>http://prova/inaturalist_sos/service/kvp?request=GetCapabilities&amp;amp;service=SOS</inspire_common:URL>
+                    <inspire_common:MediaType>application/xml</inspire_common:MediaType>
+                </inspire_common:ResourceLocator>
+                <inspire_common:ResourceType>service</inspire_common:ResourceType>
+                <inspire_common:TemporalReference/>
+                <inspire_common:Conformity>
+                    <inspire_common:Specification>
+                        <inspire_common:Title>OGC SOS 2.0 for Inspire</inspire_common:Title>
+                        <inspire_common:DateOfCreation>2008-06-01T00:00:00.000Z</inspire_common:DateOfCreation>
+                    </inspire_common:Specification>
+                    <inspire_common:Degree>notEvaluated</inspire_common:Degree>
+                </inspire_common:Conformity>
+                <inspire_common:MetadataPointOfContact>
+                    <inspire_common:OrganisationName>52North</inspire_common:OrganisationName>
+                    <inspire_common:EmailAddress>info@52north.org</inspire_common:EmailAddress>
+                </inspire_common:MetadataPointOfContact>
+                <inspire_common:MetadataDate>2008-06-01T00:00:00.000Z</inspire_common:MetadataDate>
+                <inspire_common:SpatialDataServiceType>download</inspire_common:SpatialDataServiceType>
+                <inspire_common:MandatoryKeyword>
+                    <inspire_common:KeywordValue>infoFeatureAccessService</inspire_common:KeywordValue>
+                </inspire_common:MandatoryKeyword>
+                <inspire_common:SupportedLanguages>
+                    <inspire_common:DefaultLanguage>
+                        <inspire_common:Language>eng</inspire_common:Language>
+                    </inspire_common:DefaultLanguage>
+                    <inspire_common:SupportedLanguage>
+                        <inspire_common:Language>ita</inspire_common:Language>
+                    </inspire_common:SupportedLanguage>
+                    <inspire_common:SupportedLanguage>
+                        <inspire_common:Language>eng</inspire_common:Language>
+                    </inspire_common:SupportedLanguage>
+                </inspire_common:SupportedLanguages>
+                <inspire_common:ResponseLanguage>
+                    <inspire_common:Language>eng</inspire_common:Language>
+                </inspire_common:ResponseLanguage>
+                <inspire_common:MetadataUrl>
+                    <inspire_common:URL>http://myserver.org/</inspire_common:URL>
+                    <inspire_common:MediaType>application/xml</inspire_common:MediaType>
+                </inspire_common:MetadataUrl>
+                <inspire_dls:SpatialDataSetIdentifier>
+                    <inspire_common:Code>http://www.52north.org/test/offering/9</inspire_common:Code>
+                    <inspire_common:Namespace>http://www.52north.org/</inspire_common:Namespace>
+                </inspire_dls:SpatialDataSetIdentifier>
+                <inspire_dls:SpatialDataSetIdentifier>
+                    <inspire_common:Code>offering:http://sp7.irea.cnr.it/sensors/pincopallino/procedure/noManufacturerDeclared/noModelDeclared/noSerialNumberDeclared/20151121043422200_81165/observations</inspire_common:Code>
+                    <inspire_common:Namespace>http://www.52north.org/</inspire_common:Namespace>
+                </inspire_dls:SpatialDataSetIdentifier>
+                <inspire_dls:SpatialDataSetIdentifier>
+                    <inspire_common:Code>offering:http://sp7.irea.cnr.it/procedure/core_sampler/observations</inspire_common:Code>
+                    <inspire_common:Namespace>http://www.52north.org/</inspire_common:Namespace>
+                </inspire_dls:SpatialDataSetIdentifier>
+                <inspire_dls:SupportedCRS>
+                    <inspire_dls:DefaultCRS>http://www.opengis.net/def/crs/EPSG/0/4326</inspire_dls:DefaultCRS>
+                    <inspire_dls:OtherCRS>http://www.opengis.net/def/crs/EPSG/0/4258</inspire_dls:OtherCRS>
+                    <inspire_dls:OtherCRS>http://www.opengis.net/def/crs/EPSG/0/4979</inspire_dls:OtherCRS>
+                    <inspire_dls:OtherCRS>http://www.opengis.net/def/crs/EPSG/0/31466</inspire_dls:OtherCRS>
+                    <inspire_dls:OtherCRS>http://www.opengis.net/def/crs/EPSG/0/31467</inspire_dls:OtherCRS>
+                </inspire_dls:SupportedCRS>
+            </inspire_dls:ExtendedCapabilities>
+        </ows:ExtendedCapabilities>
+    </ows:OperationsMetadata>
+    <sos:filterCapabilities>
+        <fes:Filter_Capabilities>
+            <fes:Conformance>
+                <fes:Constraint name="ImplementsQuery">
+                    <ows:NoValues/>
+                    <ows:DefaultValue>false</ows:DefaultValue>
+                </fes:Constraint>
+                <fes:Constraint name="ImplementsAdHocQuery">
+                    <ows:NoValues/>
+                    <ows:DefaultValue>false</ows:DefaultValue>
+                </fes:Constraint>
+                <fes:Constraint name="ImplementsFunctions">
+                    <ows:NoValues/>
+                    <ows:DefaultValue>false</ows:DefaultValue>
+                </fes:Constraint>
+                <fes:Constraint name="ImplementsResourceld">
+                    <ows:NoValues/>
+                    <ows:DefaultValue>false</ows:DefaultValue>
+                </fes:Constraint>
+                <fes:Constraint name="ImplementsMinStandardFilter">
+                    <ows:NoValues/>
+                    <ows:DefaultValue>false</ows:DefaultValue>
+                </fes:Constraint>
+                <fes:Constraint name="ImplementsStandardFilter">
+                    <ows:NoValues/>
+                    <ows:DefaultValue>false</ows:DefaultValue>
+                </fes:Constraint>
+                <fes:Constraint name="ImplementsMinSpatialFilter">
+                    <ows:NoValues/>
+                    <ows:DefaultValue>true</ows:DefaultValue>
+                </fes:Constraint>
+                <fes:Constraint name="ImplementsSpatialFilter">
+                    <ows:NoValues/>
+                    <ows:DefaultValue>true</ows:DefaultValue>
+                </fes:Constraint>
+                <fes:Constraint name="ImplementsMinTemporalFilter">
+                    <ows:NoValues/>
+                    <ows:DefaultValue>true</ows:DefaultValue>
+                </fes:Constraint>
+                <fes:Constraint name="ImplementsTemporalFilter">
+                    <ows:NoValues/>
+                    <ows:DefaultValue>true</ows:DefaultValue>
+                </fes:Constraint>
+                <fes:Constraint name="ImplementsVersionNav">
+                    <ows:NoValues/>
+                    <ows:DefaultValue>false</ows:DefaultValue>
+                </fes:Constraint>
+                <fes:Constraint name="ImplementsSorting">
+                    <ows:NoValues/>
+                    <ows:DefaultValue>false</ows:DefaultValue>
+                </fes:Constraint>
+                <fes:Constraint name="ImplementsExtendedOperators">
+                    <ows:NoValues/>
+                    <ows:DefaultValue>false</ows:DefaultValue>
+                </fes:Constraint>
+                <fes:Constraint name="ImplementsMinimumXPath">
+                    <ows:NoValues/>
+                    <ows:DefaultValue>false</ows:DefaultValue>
+                </fes:Constraint>
+                <fes:Constraint name="ImplementsSchemaElementFunc">
+                    <ows:NoValues/>
+                    <ows:DefaultValue>false</ows:DefaultValue>
+                </fes:Constraint>
+            </fes:Conformance>
+            <fes:Spatial_Capabilities>
+                <fes:GeometryOperands>
+                    <fes:GeometryOperand xmlns:ns="http://www.opengis.net/gml/3.2"
+                        name="ns:Envelope"/>
+                </fes:GeometryOperands>
+                <fes:SpatialOperators>
+                    <fes:SpatialOperator name="BBOX">
+                        <fes:GeometryOperands>
+                            <fes:GeometryOperand xmlns:ns="http://www.opengis.net/gml/3.2"
+                                name="ns:Envelope"/>
+                        </fes:GeometryOperands>
+                    </fes:SpatialOperator>
+                </fes:SpatialOperators>
+            </fes:Spatial_Capabilities>
+            <fes:Temporal_Capabilities>
+                <fes:TemporalOperands>
+                    <fes:TemporalOperand xmlns:ns="http://www.opengis.net/gml/3.2"
+                        name="ns:TimeInstant"/>
+                    <fes:TemporalOperand xmlns:ns="http://www.opengis.net/gml/3.2"
+                        name="ns:TimePeriod"/>
+                </fes:TemporalOperands>
+                <fes:TemporalOperators>
+                    <fes:TemporalOperator name="Before">
+                        <fes:TemporalOperands>
+                            <fes:TemporalOperand xmlns:ns="http://www.opengis.net/gml/3.2"
+                                name="ns:TimeInstant"/>
+                            <fes:TemporalOperand xmlns:ns="http://www.opengis.net/gml/3.2"
+                                name="ns:TimePeriod"/>
+                        </fes:TemporalOperands>
+                    </fes:TemporalOperator>
+                    <fes:TemporalOperator name="After">
+                        <fes:TemporalOperands>
+                            <fes:TemporalOperand xmlns:ns="http://www.opengis.net/gml/3.2"
+                                name="ns:TimeInstant"/>
+                            <fes:TemporalOperand xmlns:ns="http://www.opengis.net/gml/3.2"
+                                name="ns:TimePeriod"/>
+                        </fes:TemporalOperands>
+                    </fes:TemporalOperator>
+                    <fes:TemporalOperator name="Begins">
+                        <fes:TemporalOperands>
+                            <fes:TemporalOperand xmlns:ns="http://www.opengis.net/gml/3.2"
+                                name="ns:TimeInstant"/>
+                            <fes:TemporalOperand xmlns:ns="http://www.opengis.net/gml/3.2"
+                                name="ns:TimePeriod"/>
+                        </fes:TemporalOperands>
+                    </fes:TemporalOperator>
+                    <fes:TemporalOperator name="Ends">
+                        <fes:TemporalOperands>
+                            <fes:TemporalOperand xmlns:ns="http://www.opengis.net/gml/3.2"
+                                name="ns:TimeInstant"/>
+                            <fes:TemporalOperand xmlns:ns="http://www.opengis.net/gml/3.2"
+                                name="ns:TimePeriod"/>
+                        </fes:TemporalOperands>
+                    </fes:TemporalOperator>
+                    <fes:TemporalOperator name="EndedBy">
+                        <fes:TemporalOperands>
+                            <fes:TemporalOperand xmlns:ns="http://www.opengis.net/gml/3.2"
+                                name="ns:TimeInstant"/>
+                            <fes:TemporalOperand xmlns:ns="http://www.opengis.net/gml/3.2"
+                                name="ns:TimePeriod"/>
+                        </fes:TemporalOperands>
+                    </fes:TemporalOperator>
+                    <fes:TemporalOperator name="BegunBy">
+                        <fes:TemporalOperands>
+                            <fes:TemporalOperand xmlns:ns="http://www.opengis.net/gml/3.2"
+                                name="ns:TimeInstant"/>
+                            <fes:TemporalOperand xmlns:ns="http://www.opengis.net/gml/3.2"
+                                name="ns:TimePeriod"/>
+                        </fes:TemporalOperands>
+                    </fes:TemporalOperator>
+                    <fes:TemporalOperator name="During">
+                        <fes:TemporalOperands>
+                            <fes:TemporalOperand xmlns:ns="http://www.opengis.net/gml/3.2"
+                                name="ns:TimeInstant"/>
+                            <fes:TemporalOperand xmlns:ns="http://www.opengis.net/gml/3.2"
+                                name="ns:TimePeriod"/>
+                        </fes:TemporalOperands>
+                    </fes:TemporalOperator>
+                    <fes:TemporalOperator name="TEquals">
+                        <fes:TemporalOperands>
+                            <fes:TemporalOperand xmlns:ns="http://www.opengis.net/gml/3.2"
+                                name="ns:TimeInstant"/>
+                            <fes:TemporalOperand xmlns:ns="http://www.opengis.net/gml/3.2"
+                                name="ns:TimePeriod"/>
+                        </fes:TemporalOperands>
+                    </fes:TemporalOperator>
+                    <fes:TemporalOperator name="TContains">
+                        <fes:TemporalOperands>
+                            <fes:TemporalOperand xmlns:ns="http://www.opengis.net/gml/3.2"
+                                name="ns:TimeInstant"/>
+                            <fes:TemporalOperand xmlns:ns="http://www.opengis.net/gml/3.2"
+                                name="ns:TimePeriod"/>
+                        </fes:TemporalOperands>
+                    </fes:TemporalOperator>
+                    <fes:TemporalOperator name="TOverlaps">
+                        <fes:TemporalOperands>
+                            <fes:TemporalOperand xmlns:ns="http://www.opengis.net/gml/3.2"
+                                name="ns:TimeInstant"/>
+                            <fes:TemporalOperand xmlns:ns="http://www.opengis.net/gml/3.2"
+                                name="ns:TimePeriod"/>
+                        </fes:TemporalOperands>
+                    </fes:TemporalOperator>
+                    <fes:TemporalOperator name="Meets">
+                        <fes:TemporalOperands>
+                            <fes:TemporalOperand xmlns:ns="http://www.opengis.net/gml/3.2"
+                                name="ns:TimeInstant"/>
+                            <fes:TemporalOperand xmlns:ns="http://www.opengis.net/gml/3.2"
+                                name="ns:TimePeriod"/>
+                        </fes:TemporalOperands>
+                    </fes:TemporalOperator>
+                    <fes:TemporalOperator name="MetBy">
+                        <fes:TemporalOperands>
+                            <fes:TemporalOperand xmlns:ns="http://www.opengis.net/gml/3.2"
+                                name="ns:TimeInstant"/>
+                            <fes:TemporalOperand xmlns:ns="http://www.opengis.net/gml/3.2"
+                                name="ns:TimePeriod"/>
+                        </fes:TemporalOperands>
+                    </fes:TemporalOperator>
+                    <fes:TemporalOperator name="OverlappedBy">
+                        <fes:TemporalOperands>
+                            <fes:TemporalOperand xmlns:ns="http://www.opengis.net/gml/3.2"
+                                name="ns:TimeInstant"/>
+                            <fes:TemporalOperand xmlns:ns="http://www.opengis.net/gml/3.2"
+                                name="ns:TimePeriod"/>
+                        </fes:TemporalOperands>
+                    </fes:TemporalOperator>
+                </fes:TemporalOperators>
+            </fes:Temporal_Capabilities>
+        </fes:Filter_Capabilities>
+    </sos:filterCapabilities>
+    <!-- TODO: come fare ad aggiungere le offering quando faccio una InserObs? -->
+    <sos:contents>
+        <sos:Contents>
+            <swes:offering>
+                <sos:ObservationOffering xmlns:ns="http://www.opengis.net/sos/2.0">
+                    <swes:identifier>http://www.52north.org/test/offering/9</swes:identifier>
+                    <swes:name codeSpace="eng">offeringID</swes:name>
+                    <swes:extension>
+                        <inspire_common:SupportedLanguages
+                            xmlns:inspire_common="http://inspire.ec.europa.eu/schemas/common/1.0">
+                            <inspire_common:DefaultLanguage>
+                                <inspire_common:Language>eng</inspire_common:Language>
+                            </inspire_common:DefaultLanguage>
+                            <inspire_common:SupportedLanguage>
+                                <inspire_common:Language>ita</inspire_common:Language>
+                            </inspire_common:SupportedLanguage>
+                            <inspire_common:SupportedLanguage>
+                                <inspire_common:Language>eng</inspire_common:Language>
+                            </inspire_common:SupportedLanguage>
+                        </inspire_common:SupportedLanguages>
+                    </swes:extension>
+                    <swes:extension>
+                        <inspire_dls:SupportedCRS
+                            xmlns:inspire_dls="http://inspire.ec.europa.eu/schemas/inspire_dls/1.0">
+                            <inspire_dls:DefaultCRS>http://www.opengis.net/def/crs/EPSG/0/4326</inspire_dls:DefaultCRS>
+                            <inspire_dls:OtherCRS>http://www.opengis.net/def/crs/EPSG/0/4258</inspire_dls:OtherCRS>
+                            <inspire_dls:OtherCRS>http://www.opengis.net/def/crs/EPSG/0/4979</inspire_dls:OtherCRS>
+                            <inspire_dls:OtherCRS>http://www.opengis.net/def/crs/EPSG/0/31466</inspire_dls:OtherCRS>
+                            <inspire_dls:OtherCRS>http://www.opengis.net/def/crs/EPSG/0/31467</inspire_dls:OtherCRS>
+                        </inspire_dls:SupportedCRS>
+                    </swes:extension>
+                    <swes:procedure>http://www.52north.org/test/procedure/9</swes:procedure>
+                    <swes:procedureDescriptionFormat>http://www.opengis.net/sensorML/1.0.1</swes:procedureDescriptionFormat>
+                    <swes:procedureDescriptionFormat>http://www.opengis.net/sensorml/2.0</swes:procedureDescriptionFormat>
+                    <swes:procedureDescriptionFormat>http://www.opengis.net/waterml/2.0/observationProcess</swes:procedureDescriptionFormat>
+                    <swes:observableProperty>http://www.52north.org/test/observableProperty/9_1</swes:observableProperty>
+                    <swes:observableProperty>http://www.52north.org/test/observableProperty/9_2</swes:observableProperty>
+                    <swes:observableProperty>http://www.52north.org/test/observableProperty/9_3</swes:observableProperty>
+                    <swes:observableProperty>http://www.52north.org/test/observableProperty/9_4</swes:observableProperty>
+                    <swes:observableProperty>http://www.52north.org/test/observableProperty/9_5</swes:observableProperty>
+                    <swes:observableProperty>http://www.52north.org/test/observableProperty/9_6</swes:observableProperty>
+                    <swes:observableProperty>http://www.52north.org/test/observableProperty/9_7</swes:observableProperty>
+                    <sos:responseFormat>application/json</sos:responseFormat>
+                    <sos:responseFormat>http://dd.eionet.europa.eu/schemaset/id2011850eu-1.0</sos:responseFormat>
+                    <sos:responseFormat>http://www.opengis.net/om/2.0</sos:responseFormat>
+                    <sos:observationType>http://www.opengis.net/def/observationType/OGC-OM/2.0/OM_CategoryObservation</sos:observationType>
+                    <sos:observationType>http://www.opengis.net/def/observationType/OGC-OM/2.0/OM_CountObservation</sos:observationType>
+                    <sos:observationType>http://www.opengis.net/def/observationType/OGC-OM/2.0/OM_GeometryObservation</sos:observationType>
+                    <sos:observationType>http://www.opengis.net/def/observationType/OGC-OM/2.0/OM_Measurement</sos:observationType>
+                    <sos:observationType>http://www.opengis.net/def/observationType/OGC-OM/2.0/OM_SWEArrayObservation</sos:observationType>
+                    <sos:observationType>http://www.opengis.net/def/observationType/OGC-OM/2.0/OM_TextObservation</sos:observationType>
+                    <sos:observationType>http://www.opengis.net/def/observationType/OGC-OM/2.0/OM_TruthObservation</sos:observationType>
+                    <sos:featureOfInterestType>http://www.opengis.net/def/samplingFeatureType/OGC-OM/2.0/SF_SamplingPoint</sos:featureOfInterestType>
+                </sos:ObservationOffering>
+            </swes:offering>
+            <swes:offering>
+                <sos:ObservationOffering xmlns:ns="http://www.opengis.net/sos/2.0">
+                    <swes:identifier>offering:http://sp7.irea.cnr.it/procedure/core_sampler/observations</swes:identifier>
+                    <swes:name codeSpace="eng">Offering for sensor
+                        offering:http://sp7.irea.cnr.it/procedure/core_sampler</swes:name>
+                    <swes:extension>
+                        <inspire_dls:SupportedCRS
+                            xmlns:inspire_dls="http://inspire.ec.europa.eu/schemas/inspire_dls/1.0">
+                            <inspire_dls:DefaultCRS>http://www.opengis.net/def/crs/EPSG/0/4326</inspire_dls:DefaultCRS>
+                            <inspire_dls:OtherCRS>http://www.opengis.net/def/crs/EPSG/0/4258</inspire_dls:OtherCRS>
+                            <inspire_dls:OtherCRS>http://www.opengis.net/def/crs/EPSG/0/4979</inspire_dls:OtherCRS>
+                            <inspire_dls:OtherCRS>http://www.opengis.net/def/crs/EPSG/0/31466</inspire_dls:OtherCRS>
+                            <inspire_dls:OtherCRS>http://www.opengis.net/def/crs/EPSG/0/31467</inspire_dls:OtherCRS>
+                        </inspire_dls:SupportedCRS>
+                    </swes:extension>
+                    <swes:extension>
+                        <inspire_common:SupportedLanguages
+                            xmlns:inspire_common="http://inspire.ec.europa.eu/schemas/common/1.0">
+                            <inspire_common:DefaultLanguage>
+                                <inspire_common:Language>eng</inspire_common:Language>
+                            </inspire_common:DefaultLanguage>
+                            <inspire_common:SupportedLanguage>
+                                <inspire_common:Language>ita</inspire_common:Language>
+                            </inspire_common:SupportedLanguage>
+                            <inspire_common:SupportedLanguage>
+                                <inspire_common:Language>eng</inspire_common:Language>
+                            </inspire_common:SupportedLanguage>
+                        </inspire_common:SupportedLanguages>
+                    </swes:extension>
+                    <swes:procedure>http://sp7.irea.cnr.it/procedure/core_sampler</swes:procedure>
+                    <swes:procedureDescriptionFormat>http://www.opengis.net/sensorML/1.0.1</swes:procedureDescriptionFormat>
+                    <swes:procedureDescriptionFormat>http://www.opengis.net/sensorml/2.0</swes:procedureDescriptionFormat>
+                    <swes:procedureDescriptionFormat>http://www.opengis.net/waterml/2.0/observationProcess</swes:procedureDescriptionFormat>
+                    <swes:observableProperty>http://sp7.irea.cnr.it/ObservablePropertiesUnion?offering=offering:http://sp7.irea.cnr.it/procedure/core_sampler/observations</swes:observableProperty>
+                    <swes:observableProperty>http://sp7.irea.cnr.it/voc/CACO3/</swes:observableProperty>
+                    <swes:observableProperty>http://sp7.irea.cnr.it/voc/LOI/</swes:observableProperty>
+                    <swes:observableProperty>http://sp7.irea.cnr.it/voc/OC/</swes:observableProperty>
+                    <swes:observableProperty>http://sp7.irea.cnr.it/voc/current/DW/</swes:observableProperty>
+                    <swes:observableProperty>http://sp7.irea.cnr.it/voc/lengthOfVarve/</swes:observableProperty>
+                    <swes:observableProperty>http://vocab.nerc.ac.uk/collection/P02/current/CBSD/</swes:observableProperty>
+                    <swes:observableProperty>http://vocab.nerc.ac.uk/collection/P02/current/NTSD/</swes:observableProperty>
+                    <swes:observableProperty>http://vocab.nerc.ac.uk/collection/P02/current/SAGE/</swes:observableProperty>
+                    <swes:observableProperty>http://vocab.nerc.ac.uk/collection/P02/current/TRIS/</swes:observableProperty>
+                    <sos:observedArea>
+                        <gml:Envelope srsName="http://www.opengis.net/def/crs/EPSG/0/4326">
+                            <gml:lowerCorner>45.786389 9.216667</gml:lowerCorner>
+                            <gml:upperCorner>45.786389 9.216667</gml:upperCorner>
+                        </gml:Envelope>
+                    </sos:observedArea>
+                    <sos:phenomenonTime>
+                        <gml:TimePeriod gml:id="phenomenonTime_2">
+                            <gml:beginPosition>2014-06-15T09:00:00.000Z</gml:beginPosition>
+                            <gml:endPosition>2014-06-15T10:00:00.000Z</gml:endPosition>
+                        </gml:TimePeriod>
+                    </sos:phenomenonTime>
+                    <sos:resultTime>
+                        <gml:TimePeriod gml:id="resultTime_2">
+                            <gml:beginPosition>2014-06-17T14:30:00.000Z</gml:beginPosition>
+                            <gml:endPosition>2014-06-17T14:30:00.000Z</gml:endPosition>
+                        </gml:TimePeriod>
+                    </sos:resultTime>
+                    <sos:responseFormat>application/json</sos:responseFormat>
+                    <sos:responseFormat>http://dd.eionet.europa.eu/schemaset/id2011850eu-1.0</sos:responseFormat>
+                    <sos:responseFormat>http://www.opengis.net/om/2.0</sos:responseFormat>
+                    <sos:observationType>http://www.opengis.net/def/observationType/OGC-OM/2.0/OM_SWEArrayObservation</sos:observationType>
+                    <sos:featureOfInterestType>http://www.opengis.net/def/nil/OGC/0/unknown</sos:featureOfInterestType>
+                    <sos:featureOfInterestType>http://www.opengis.net/def/samplingFeatureType/OGC-OM/2.0/SF_SamplingCurve</sos:featureOfInterestType>
+                    <sos:featureOfInterestType>http://www.opengis.net/def/samplingFeatureType/OGC-OM/2.0/SF_SamplingPoint</sos:featureOfInterestType>
+                    <sos:featureOfInterestType>http://www.opengis.net/def/samplingFeatureType/OGC-OM/2.0/SF_SamplingSurface</sos:featureOfInterestType>
+                </sos:ObservationOffering>
+            </swes:offering>
+            <swes:offering>
+                <sos:ObservationOffering xmlns:ns="http://www.opengis.net/sos/2.0">
+                    <swes:identifier>offering:http://sp7.irea.cnr.it/sensors/pincopallino/procedure/noManufacturerDeclared/noModelDeclared/noSerialNumberDeclared/20151121043422200_81165/observations</swes:identifier>
+                    <swes:name codeSpace="eng">Offering for sensor
+                        offering:http://sp7.irea.cnr.it/sensors/pincopallino/procedure/noManufacturerDeclared/noModelDeclared/noSerialNumberDeclared/20151121043422200_81165</swes:name>
+                    <swes:extension>
+                        <inspire_dls:SupportedCRS
+                            xmlns:inspire_dls="http://inspire.ec.europa.eu/schemas/inspire_dls/1.0">
+                            <inspire_dls:DefaultCRS>http://www.opengis.net/def/crs/EPSG/0/4326</inspire_dls:DefaultCRS>
+                            <inspire_dls:OtherCRS>http://www.opengis.net/def/crs/EPSG/0/4258</inspire_dls:OtherCRS>
+                            <inspire_dls:OtherCRS>http://www.opengis.net/def/crs/EPSG/0/4979</inspire_dls:OtherCRS>
+                            <inspire_dls:OtherCRS>http://www.opengis.net/def/crs/EPSG/0/31466</inspire_dls:OtherCRS>
+                            <inspire_dls:OtherCRS>http://www.opengis.net/def/crs/EPSG/0/31467</inspire_dls:OtherCRS>
+                        </inspire_dls:SupportedCRS>
+                    </swes:extension>
+                    <swes:extension>
+                        <inspire_common:SupportedLanguages
+                            xmlns:inspire_common="http://inspire.ec.europa.eu/schemas/common/1.0">
+                            <inspire_common:DefaultLanguage>
+                                <inspire_common:Language>eng</inspire_common:Language>
+                            </inspire_common:DefaultLanguage>
+                            <inspire_common:SupportedLanguage>
+                                <inspire_common:Language>ita</inspire_common:Language>
+                            </inspire_common:SupportedLanguage>
+                            <inspire_common:SupportedLanguage>
+                                <inspire_common:Language>eng</inspire_common:Language>
+                            </inspire_common:SupportedLanguage>
+                        </inspire_common:SupportedLanguages>
+                    </swes:extension>
+                    <swes:procedure>http://sp7.irea.cnr.it/sensors/pincopallino/procedure/noManufacturerDeclared/noModelDeclared/noSerialNumberDeclared/20151121043422200_81165</swes:procedure>
+                    <swes:procedureDescriptionFormat>http://www.opengis.net/sensorML/1.0.1</swes:procedureDescriptionFormat>
+                    <swes:procedureDescriptionFormat>http://www.opengis.net/sensorml/2.0</swes:procedureDescriptionFormat>
+                    <swes:procedureDescriptionFormat>http://www.opengis.net/waterml/2.0/observationProcess</swes:procedureDescriptionFormat>
+                    <swes:observableProperty>http://vocab.nerc.ac.uk/collection/P01/current/CATAVT10/</swes:observableProperty>
+                    <swes:observableProperty>http://vocab.nerc.ac.uk/collection/P01/current/EWS1MX01/</swes:observableProperty>
+                    <swes:observableProperty>http://www.opengis.net/def/property/OGC/0/PhenomenonTime</swes:observableProperty>
+                    <sos:responseFormat>application/json</sos:responseFormat>
+                    <sos:responseFormat>http://dd.eionet.europa.eu/schemaset/id2011850eu-1.0</sos:responseFormat>
+                    <sos:responseFormat>http://www.opengis.net/om/2.0</sos:responseFormat>
+                    <sos:observationType>http://www.opengis.net/def/observationType/OGC-OM/2.0/OM_CategoryObservation</sos:observationType>
+                    <sos:observationType>http://www.opengis.net/def/observationType/OGC-OM/2.0/OM_CountObservation</sos:observationType>
+                    <sos:observationType>http://www.opengis.net/def/observationType/OGC-OM/2.0/OM_GeometryObservation</sos:observationType>
+                    <sos:observationType>http://www.opengis.net/def/observationType/OGC-OM/2.0/OM_Measurement</sos:observationType>
+                    <sos:observationType>http://www.opengis.net/def/observationType/OGC-OM/2.0/OM_SWEArrayObservation</sos:observationType>
+                    <sos:observationType>http://www.opengis.net/def/observationType/OGC-OM/2.0/OM_TextObservation</sos:observationType>
+                    <sos:observationType>http://www.opengis.net/def/observationType/OGC-OM/2.0/OM_TruthObservation</sos:observationType>
+                    <sos:featureOfInterestType>http://www.opengis.net/def/samplingFeatureType/OGC-OM/2.0/SF_SamplingCurve</sos:featureOfInterestType>
+                    <sos:featureOfInterestType>http://www.opengis.net/def/samplingFeatureType/OGC-OM/2.0/SF_SamplingPoint</sos:featureOfInterestType>
+                    <sos:featureOfInterestType>http://www.opengis.net/def/samplingFeatureType/OGC-OM/2.0/SF_SamplingSurface</sos:featureOfInterestType>
+                </sos:ObservationOffering>
+            </swes:offering>
+        </sos:Contents>
+    </sos:contents>
+</sos:Capabilities>

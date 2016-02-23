@@ -64,6 +64,14 @@ public class MainService {
 		return u;
 	}
 	
+	public User retrieveUser(String id) {
+		RestTemplate restTemplate = new RestTemplate();
+
+		User u = (User) restTemplate.getForObject(id, User.class);
+		
+		return u;
+	}
+	
 	public Observation[] retrieveObservations() {
 		log.info("here I am");
 		
