@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.net.URL;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -220,14 +221,34 @@ public class MainService {
 			return null;
 		}
 	}
+	
+	public Class getFieldType(Object o, String field) {
+		Class<?> c = o.getClass();
+
+		Field f;
+		try {
+			f = c.getDeclaredField(field);
+			f.setAccessible(true);
+			log.info("field " + field + " is " + f.getType().getName());
+			return f.getType();
+		} catch (NoSuchFieldException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 	public String fillInSensorDescribe(User user) throws IOException {
 		return fillInSensor(user).replaceAll("swes:InsertSensor", "swes:DescribeSensor");
 	}
 	
 	public String fillInSensor(User user) throws IOException {
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mmZ");
 		String result = "";
-		URL url = this.getClass().getClassLoader().getResource("static/InsertSensor.xml");
+		URL url = this.getClass().getClassLoader().getResource("DescribeSensor_Response.xml");
 		log.info(url.getPath());
 		ArrayList<String> tokens = new ArrayList<>();
 		Pattern pattern = Pattern.compile("\\$([a-zA-Z0-9_]+)\\$");
@@ -241,9 +262,15 @@ public class MainService {
 		Matcher m = pattern.matcher(result);
 		while ( m.find() ) {
 			Object objectValue = getFieldValue(user, m.group(1));
+			Class objectType = getFieldType(user, m.group(1));
 			String value = "";
 			if ( objectValue != null ) {
-				value = objectValue.toString();
+				if ( objectType.equals(Date.class) ) {
+					log.info("field " + m.group(1) + " is recognized as date");
+					value = df.format(objectValue);
+				} else {
+					value = objectValue.toString();
+				}
 			}
 			// log.info(m.group(1));
 			// log.info(value);

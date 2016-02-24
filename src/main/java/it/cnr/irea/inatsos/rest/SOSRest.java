@@ -8,7 +8,6 @@ import java.io.UnsupportedEncodingException;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
-import javax.xml.transform.Source;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
@@ -48,7 +47,9 @@ public class SOSRest {
 		return sb.toString();
 	}
 	@RequestMapping(method=RequestMethod.POST, value="/service", consumes=MediaType.APPLICATION_XML_VALUE, produces=MediaType.APPLICATION_XML_VALUE)
-	public @ResponseBody ResponseEntity<GenericResponse> describeSensor(@RequestBody String dtoString) throws JAXBException, XmlMappingException, UnsupportedEncodingException, IOException {
+	public String describeSensor(@RequestBody String dtoString) throws JAXBException, XmlMappingException, UnsupportedEncodingException, IOException {
+		System.out.println(dtoString);
+		
 		JAXBContext jc = JAXBContext.newInstance(DescribeSensorRequestDTO.class, ExceptionReport.class);
 		//Create unmarshaller
 		Unmarshaller um = (Unmarshaller) jc.createUnmarshaller();
@@ -56,15 +57,16 @@ public class SOSRest {
 		if ( dto instanceof DescribeSensorRequestDTO ) {
 			System.out.println("describeSensor");
 			User u = service.retrieveUser(((DescribeSensorRequestDTO) dto).procedure);
-			
-			return new ResponseEntity<GenericResponse>((DescribeSensorRequestDTO)dto, HttpStatus.OK);
+			String s = service.fillInSensor(u);
+			return s;
+//			return new ResponseEntity<GenericResponse>((DescribeSensorRequestDTO)dto, HttpStatus.OK);
 		}
 		Exception e = new Exception();
 		e.exceptionCode = "UnknownRequest";
 		e.exceptionText = "This service cannot recognize this request";
 		ExceptionReport r = new ExceptionReport();
 		r.exception = e;
-		return new ResponseEntity<GenericResponse>(r, HttpStatus.INTERNAL_SERVER_ERROR);
+		return "<picche/>"; // new ResponseEntity<GenericResponse>(r, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	@RequestMapping(method=RequestMethod.GET, value="/service", /*consumes=MediaType.APPLICATION_XML_VALUE, */produces=MediaType.APPLICATION_XML_VALUE)
 	public DescribeSensorRequestDTO describeSensorGET() {
