@@ -1,10 +1,17 @@
 package it.cnr.irea.inatsos.service;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.lang.reflect.Field;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -63,7 +70,6 @@ public class MainService {
 		
 		return u;
 	}
-	
 	public User retrieveUser(String id) {
 		RestTemplate restTemplate = new RestTemplate();
 
@@ -71,7 +77,7 @@ public class MainService {
 		
 		return u;
 	}
-	
+		
 	public Observation[] retrieveObservations() {
 		log.info("here I am");
 		
@@ -155,4 +161,128 @@ public class MainService {
 		}
 		return s;
 	}
+	
+	public List<User> allUsers() {
+		return em.createNamedQuery("User.findAll").getResultList();
+	}
+	
+	public List<Observation> allObservations() {
+		return em.createNamedQuery("Observation.findAll").getResultList();
+	}
+	
+	public List<String> fillInSensors() {
+		ArrayList<String> strings = new ArrayList<String>();
+		for ( User u : allUsers() ) {
+			try {
+				strings.add(fillInSensor(u));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		return strings;
+	}
+
+	public ArrayList<String> fillInObservations() {
+		ArrayList<String> strings = new ArrayList<String>();
+		for ( Observation o : allObservations() ) {
+			try {
+				strings.add(fillInObservation(o));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return strings;
+	}
+
+	public Object getFieldValue(Object o, String field) {
+		Class<?> c = o.getClass();
+
+		Field f;
+		try {
+			f = c.getDeclaredField(field);
+			f.setAccessible(true);
+
+			return f.get(o);
+		} catch (NoSuchFieldException | SecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public String fillInSensorDescribe(User user) throws IOException {
+		return fillInSensor(user).replaceAll("swes:InsertSensor", "swes:DescribeSensor");
+	}
+	
+	public String fillInSensor(User user) throws IOException {
+		String result = "";
+		URL url = this.getClass().getClassLoader().getResource("static/InsertSensor.xml");
+		log.info(url.getPath());
+		ArrayList<String> tokens = new ArrayList<>();
+		Pattern pattern = Pattern.compile("\\$([a-zA-Z0-9_]+)\\$");
+		
+		BufferedReader file = new BufferedReader(new FileReader(url.getFile()));
+		String s = null;
+		while ( (s = file.readLine()) != null ) {
+			result += s;
+		}
+		
+		Matcher m = pattern.matcher(result);
+		while ( m.find() ) {
+			Object objectValue = getFieldValue(user, m.group(1));
+			String value = "";
+			if ( objectValue != null ) {
+				value = objectValue.toString();
+			}
+			// log.info(m.group(1));
+			// log.info(value);
+			result = result.replaceAll("\\$" + m.group(1) + "\\$", value);
+		}
+		
+		log.info(result);
+		
+		return result;
+	}
+	
+	public String fillInObservation(Observation observation) throws IOException {
+		String result = "";
+		URL url = this.getClass().getClassLoader().getResource("static/InsertObservation.xml");
+		log.info(url.getPath());
+		ArrayList<String> tokens = new ArrayList<>();
+		Pattern pattern = Pattern.compile("\\$([a-zA-Z0-9_]+)\\$");
+		
+		BufferedReader file = new BufferedReader(new FileReader(url.getFile()));
+		String s = null;
+		while ( (s = file.readLine()) != null ) {
+			result += s;
+		}
+		
+		Matcher m = pattern.matcher(result);
+		while ( m.find() ) {
+			Object objectValue = getFieldValue(observation, m.group(1));
+			String value = "";
+			if ( objectValue != null ) {
+				value = objectValue.toString();
+			}
+			// log.info(m.group(1));
+			// log.info(value);
+			result = result.replaceAll("\\$" + m.group(1) + "\\$", value);
+		}
+		
+		log.info(result);
+		
+		return result;
+	}
+
 }

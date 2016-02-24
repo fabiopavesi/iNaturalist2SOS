@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class IconicTaxon {
 	@JsonProperty("id")
 	@Column(nullable=true)
-	private long taxonId;
+	private long taxonMainId;
 	private String name;
 	private String ancestry;
 	private String rank;
@@ -19,11 +19,11 @@ public class IconicTaxon {
 	@JsonProperty("iconic_taxon_name")
 	private String iconicTaxonName;
 	
-	public long getTaxonId() {
-		return taxonId;
+	public long getTaxonMainId() {
+		return taxonMainId;
 	}
-	public void setTaxonId(long id) {
-		this.taxonId = id;
+	public void setTaxonMainId(long id) {
+		this.taxonMainId = id;
 	}
 	public String getName() {
 		return name;
