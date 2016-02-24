@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<swes:DescribeSensorResponse xmlns:swes="http://www.opengis.net/swes/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gco="http://www.isotc211.org/2005/gco" xsi:schemaLocation="http://www.opengis.net/swes/2.0 http://schemas.opengis.net/swes/2.0/swesDescribeSensor.xsd http://www.isotc211.org/2005/gco http://schemas.opengis.net/iso/19139/20070417/gco/gco.xsd http://www.opengis.net/gml/3.2 http://schemas.opengis.net/gml/3.2.1/gml.xsd http://www.isotc211.org/2005/gmd http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd http://www.opengis.net/sensorml/2.0 http://schemas.opengis.net/sensorML/2.0/sensorML.xsd">
+    <swes:procedureDescriptionFormat>http://www.opengis.net/sensorml/2.0</swes:procedureDescriptionFormat>
+    <swes:description>
+        <swes:SensorDescription>
+            <swes:validTime>
+                <gml:TimePeriod gml:id="tp_8777B0B5B0DA5A0C66D375FDFF7A7C09F8C21FAE">
+                    <gml:beginPosition>$createdAt$</gml:beginPosition>
+                    <gml:endPosition indeterminatePosition="unknown"/>
+                </gml:TimePeriod>
+            </swes:validTime>
+            <swes:data>
+                <sml:PhysicalSystem xmlns:sml="http://www.opengis.net/sensorml/2.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:swe="http://www.opengis.net/swe/2.0" gml:id="ps_03B07A61E9FAB0FE3665F5C300752024CFFFDB45">
+                    <!--Unique identifier-->
+                    <gml:identifier codeSpace="uniqueID">$uri$/gml:identifier>
+                    <sml:keywords>
+                        <sml:KeywordList>
+                            <sml:keyword>$uri$</sml:keyword>
+                            <sml:keyword>http://rs.tdwg.org/dwc/terms/scientificName</sml:keyword>
+                            <sml:keyword>$name$ iNaturalist profile</sml:keyword>
+                            <sml:keyword>http://www.opengis.net/def/property/OGC/0/PhenomenonTime</sml:keyword>
+                            <sml:keyword>offering:$id$/observations</sml:keyword>
+                            <sml:keyword>http://rs.tdwg.org/dwc/terms/associatedMedia</sml:keyword>
+                            <sml:keyword>iNat_$name$</sml:keyword>
+                            <sml:keyword>http://rs.tdwg.org/dwc/dwcore/MaximumElevationInMeters</sml:keyword>
+                        </sml:KeywordList>
+                    </sml:keywords>
+                    <sml:identification>
+                        <sml:IdentifierList>
+                            <sml:identifier>
+                                <sml:Term definition="urn:ogc:def:identifier:OGC:1.0:longName">
+                                    <sml:label>longName</sml:label>
+                                    <sml:value>$name$ iNaturalist profile</sml:value>
+                                </sml:Term>
+                            </sml:identifier>
+                            <sml:identifier>
+                                <sml:Term definition="urn:ogc:def:identifier:OGC:1.0:shortName">
+                                    <sml:label>shortName</sml:label>
+                                    <sml:value>iNat_$name$</sml:value>
+                                </sml:Term>
+                            </sml:identifier>
+                            <sml:identifier>
+                                <sml:Term definition="urn:ogc:def:identifier:OGC:uniqueID">
+                                    <sml:label>uniqueID</sml:label>
+                                    <sml:value>$uri$</sml:value>
+                                </sml:Term>
+                            </sml:identifier>
+                        </sml:IdentifierList>
+                    </sml:identification>
+                    <sml:validTime>
+                        <gml:TimePeriod gml:id="tp_3F3381C254D86F00A8C0387F5972238F38259739">
+                            <gml:beginPosition>$createdAt</gml:beginPosition>
+                            <gml:endPosition indeterminatePosition="unknown"/>
+                        </gml:TimePeriod>
+                    </sml:validTime>
+                    <sml:capabilities name="offerings">
+                        <sml:CapabilityList>
+                            <sml:capability name="Offering_for_sensor_offering_https___www.inaturalist.org_users_oggioniale">
+                                <swe:Text definition="http://www.opengis.net/def/offering/identifier">
+                                    <swe:label>Offering for sensor offering:$uri$</swe:label>
+                                    <swe:value>offering:$uri$/observations</swe:value>
+                                </swe:Text>
+                            </sml:capability>
+                        </sml:CapabilityList>
+                    </sml:capabilities>
+                    <sml:contacts>
+                        <sml:ContactList>
+                            <sml:contact>
+                                <gmd:CI_ResponsibleParty>
+                                    <gmd:individualName>
+                                        <gco:CharacterString>TBA</gco:CharacterString>
+                                    </gmd:individualName>
+                                    <gmd:organisationName>
+                                        <gco:CharacterString>52North</gco:CharacterString>
+                                    </gmd:organisationName>
+                                    <gmd:positionName>
+                                        <gco:CharacterString>TBA</gco:CharacterString>
+                                    </gmd:positionName>
+                                    <gmd:contactInfo>
+                                        <gmd:CI_Contact>
+                                            <gmd:phone>
+                                                <gmd:CI_Telephone>
+                                                    <gmd:voice>
+                                                        <gco:CharacterString>+49(0)251/396 371-0</gco:CharacterString>
+                                                    </gmd:voice>
+                                                </gmd:CI_Telephone>
+                                            </gmd:phone>
+                                            <gmd:address>
+                                                <gmd:CI_Address>
+                                                    <gmd:deliveryPoint>
+                                                        <gco:CharacterString>Martin-Luther-King-Weg 24</gco:CharacterString>
+                                                    </gmd:deliveryPoint>
+                                                    <gmd:city>
+                                                        <gco:CharacterString>Münster</gco:CharacterString>
+                                                    </gmd:city>
+                                                    <gmd:postalCode>
+                                                        <gco:CharacterString>48155</gco:CharacterString>
+                                                    </gmd:postalCode>
+                                                    <gmd:country>
+                                                        <gco:CharacterString>Germany</gco:CharacterString>
+                                                    </gmd:country>
+                                                    <gmd:electronicMailAddress>
+                                                        <gco:CharacterString>info@52north.org</gco:CharacterString>
+                                                    </gmd:electronicMailAddress>
+                                                </gmd:CI_Address>
+                                            </gmd:address>
+                                            <gmd:onlineResource xlink:href="http://52north.org/swe"/>
+                                        </gmd:CI_Contact>
+                                    </gmd:contactInfo>
+                                    <gmd:role>
+                                        <gmd:CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode/" codeListValue="CI_RoleCode_pointOfContact">Point of Contact</gmd:CI_RoleCode>
+                                    </gmd:role>
+                                </gmd:CI_ResponsibleParty>
+                            </sml:contact>
+                        </sml:ContactList>
+                    </sml:contacts>
+                    <sml:outputs>
+                        <sml:OutputList>
+                            <sml:output name="taxonID">
+                                <swe:Quantity definition="http://rs.tdwg.org/dwc/terms/taxonID">
+                                    <swe:uom code="Dmnless"/>
+                                </swe:Quantity>
+                            </sml:output>
+                             <!--sml:output name="Maximum_Elevation_In_Meters">
+                                <swe:Quantity definition="http://rs.tdwg.org/dwc/dwcore/MaximumElevationInMeters">
+                                    <swe:uom code="m"/>
+                                </swe:Quantity>
+                            </sml:output -->
+                            <sml:output name="Associated_Media">
+                                <swe:Quantity definition="http://rs.tdwg.org/dwc/terms/associatedMedia">
+                                    <swe:uom code="Dmnless"/>
+                                </swe:Quantity>
+                            </sml:output>
+                        </sml:OutputList>
+                    </sml:outputs>
+                </sml:PhysicalSystem>
+            </swes:data>
+        </swes:SensorDescription>
+    </swes:description>
+</swes:DescribeSensorResponse>
