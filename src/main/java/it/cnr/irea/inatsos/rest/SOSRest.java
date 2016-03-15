@@ -36,15 +36,7 @@ public class SOSRest {
 	
 	@RequestMapping(method=RequestMethod.GET, value="/GetCapabilities", produces=MediaType.APPLICATION_XML_VALUE)
 	public String getCapabilities() throws IOException {
-		String fileLocationInClasspath = "iNat_CapabilitiesResponse.xml";
-		Resource resource = new ClassPathResource(fileLocationInClasspath);
-		InputStream resourceInputStream = resource.getInputStream();
-		StringBuilder sb = new StringBuilder();
-		int c = 0;
-		while ( (c = resourceInputStream.read()) != -1 ) {
-			sb.append((char) c);
-		}
-		return sb.toString();
+		return service.getCapabilities();
 	}
 	@RequestMapping(method=RequestMethod.POST, value="/service", consumes=MediaType.APPLICATION_XML_VALUE, produces=MediaType.APPLICATION_XML_VALUE)
 	public String describeSensor(@RequestBody String dtoString) throws JAXBException, XmlMappingException, UnsupportedEncodingException, IOException {
@@ -54,6 +46,7 @@ public class SOSRest {
 		//Create unmarshaller
 		Unmarshaller um = (Unmarshaller) jc.createUnmarshaller();
 		Object dto = um.unmarshal(new ByteArrayInputStream(dtoString.getBytes("utf-8")));
+
 		if ( dto instanceof DescribeSensorRequestDTO ) {
 			System.out.println("describeSensor");
 			User u = service.retrieveUser(((DescribeSensorRequestDTO) dto).procedure);
@@ -61,6 +54,7 @@ public class SOSRest {
 			return s;
 //			return new ResponseEntity<GenericResponse>((DescribeSensorRequestDTO)dto, HttpStatus.OK);
 		}
+		
 		Exception e = new Exception();
 		e.exceptionCode = "UnknownRequest";
 		e.exceptionText = "This service cannot recognize this request";

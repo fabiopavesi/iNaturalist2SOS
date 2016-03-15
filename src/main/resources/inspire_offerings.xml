@@ -1,0 +1,4 @@
+<inspire_dls:SpatialDataSetIdentifier>
+    <inspire_common:Code>offering:$uri$/observations</inspire_common:Code>
+    <inspire_common:Namespace>http://www.52north.org/</inspire_common:Namespace>
+</inspire_dls:SpatialDataSetIdentifier>

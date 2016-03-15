@@ -1,8 +1,16 @@
 package it.cnr.irea.inatsos.service;
 
+import it.cnr.irea.inatsos.dto.ProjectMemberDTO;
+import it.cnr.irea.inatsos.model.Harvest;
+import it.cnr.irea.inatsos.model.Observation;
+import it.cnr.irea.inatsos.model.Setting;
+import it.cnr.irea.inatsos.model.User;
+import it.cnr.irea.inatsos.utils.LoggingRequestInterceptor;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.net.URL;
 import java.text.DateFormat;
@@ -20,18 +28,18 @@ import javax.persistence.NoResultException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.BufferingClientHttpRequestFactory;
 import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
-
-import it.cnr.irea.inatsos.model.Harvest;
-import it.cnr.irea.inatsos.model.Observation;
-import it.cnr.irea.inatsos.model.Setting;
-import it.cnr.irea.inatsos.model.User;
-import it.cnr.irea.inatsos.utils.LoggingRequestInterceptor;
 
 @Service
 @Transactional
@@ -77,6 +85,19 @@ public class MainService {
 		User u = (User) restTemplate.getForObject(id, User.class);
 		
 		return u;
+	}
+	
+	public ProjectMemberDTO[] retrieveAllUsers() {
+		String encodedCredentials = "";
+		RestTemplate restTemplate = new RestTemplate();
+		String url = "https://www.inaturalist.org/projects/lter-italy/members?format=json";
+		final HttpHeaders headers = new HttpHeaders();
+		headers.add("Authorization", "Basic " + encodedCredentials);
+		final HttpEntity<String> request = new HttpEntity<String>(headers);
+		
+		ResponseEntity<ProjectMemberDTO[]> u = restTemplate.exchange(url, HttpMethod.GET, request, ProjectMemberDTO[].class);
+		ProjectMemberDTO[] members = u.getBody();
+		return members;
 	}
 		
 	public Observation[] retrieveObservations() {
@@ -282,6 +303,30 @@ public class MainService {
 		return result;
 	}
 	
+	public String fillInSensor(String xml, User user) {
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mmZ");
+		Pattern pattern = Pattern.compile("\\$([a-zA-Z0-9_]+)\\$");
+		Matcher m = pattern.matcher(xml);
+		
+		while ( m.find() ) {
+			Object objectValue = getFieldValue(user, m.group(1));
+			Class objectType = getFieldType(user, m.group(1));
+			String value = "";
+			if ( objectValue != null ) {
+				if ( objectType.equals(Date.class) ) {
+					log.info("field " + m.group(1) + " is recognized as date");
+					value = df.format(objectValue);
+				} else {
+					value = objectValue.toString();
+				}
+			}
+			// log.info(m.group(1));
+			// log.info(value);
+			xml = xml.replaceAll("\\$" + m.group(1) + "\\$", value);
+		}
+		return xml;
+	}
+	
 	public String fillInObservation(Observation observation) throws IOException {
 		String result = "";
 		URL url = this.getClass().getClassLoader().getResource("static/InsertObservation.xml");
@@ -312,4 +357,39 @@ public class MainService {
 		return result;
 	}
 
+	public String getFileContent(String fileName) throws IOException {
+		String result = null;
+		String fileLocationInClasspath = fileName;
+		Resource resource = new ClassPathResource(fileLocationInClasspath);
+		InputStream resourceInputStream = resource.getInputStream();
+		StringBuilder sb = new StringBuilder();
+		int c = 0;
+		while ( (c = resourceInputStream.read()) != -1 ) {
+			sb.append((char) c);
+		}
+		return sb.toString();
+	}
+	
+	public String getCapabilities() throws IOException {
+		String result = getFileContent("iNat_CapabilitiesResponse.xml");
+		String inspireBlock = "";
+		String finalBlock = "";
+		String procedures = "";
+		
+		final String inspireOfferings = getFileContent("inspire_offerings.xml");
+		final String offerings = getFileContent("single_offering.xml");
+		
+		ProjectMemberDTO[] members = retrieveAllUsers();
+		
+		for ( ProjectMemberDTO m : members ) {
+			User u = retrieveUser(m.user_id);
+			inspireBlock += fillInSensor(inspireOfferings, u);
+			finalBlock += fillInSensor(offerings, u);
+			procedures += "<ows:Value>" + u.getUri() + "</ows:Value>";
+		}
+		result = result.replace("$inspireOfferings$", inspireBlock);
+		result = result.replace("$offerings$", finalBlock);
+		result = result.replace("$procedures$", procedures);
+		return result;
+	}
 }

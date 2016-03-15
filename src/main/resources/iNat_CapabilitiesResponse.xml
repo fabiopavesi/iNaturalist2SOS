@@ -120,7 +120,7 @@
             <ows:Parameter name="procedure">
                 <ows:AllowedValues>
                     <!-- TODO: list of all possible values -->
-                    <ows:Value>https://www.inaturalist.org/users/oggioniale</ows:Value>
+                    $procedures$
                 </ows:AllowedValues>
             </ows:Parameter>
             <ows:Parameter name="procedureDescriptionFormat">
@@ -370,24 +370,9 @@
                 <!-- 
                 	TODO: Offering list: one for each iNaturalist project user
                  -->
-                <inspire_dls:SpatialDataSetIdentifier>
-                    <inspire_common:Code>http://www.52north.org/test/offering/9</inspire_common:Code>
-                    <inspire_common:Namespace>http://www.52north.org/</inspire_common:Namespace>
-                </inspire_dls:SpatialDataSetIdentifier>
-                <inspire_dls:SpatialDataSetIdentifier>
-                    <inspire_common:Code>offering:http://www.inaturalist.org/people/kueda/observations</inspire_common:Code>
-                    <inspire_common:Namespace>http://www.inaturalist.org</inspire_common:Namespace>
-                </inspire_dls:SpatialDataSetIdentifier>
-                <inspire_dls:SpatialDataSetIdentifier>
-                    <inspire_common:Code>offering:http://sp7.irea.cnr.it/procedure/core_sampler/observations</inspire_common:Code>
-                    <inspire_common:Namespace>http://www.52north.org/</inspire_common:Namespace>
-                </inspire_dls:SpatialDataSetIdentifier>
+                 $inspireOfferings$
                 <inspire_dls:SupportedCRS>
                     <inspire_dls:DefaultCRS>http://www.opengis.net/def/crs/EPSG/0/4326</inspire_dls:DefaultCRS>
-                    <inspire_dls:OtherCRS>http://www.opengis.net/def/crs/EPSG/0/4258</inspire_dls:OtherCRS>
-                    <inspire_dls:OtherCRS>http://www.opengis.net/def/crs/EPSG/0/4979</inspire_dls:OtherCRS>
-                    <inspire_dls:OtherCRS>http://www.opengis.net/def/crs/EPSG/0/31466</inspire_dls:OtherCRS>
-                    <inspire_dls:OtherCRS>http://www.opengis.net/def/crs/EPSG/0/31467</inspire_dls:OtherCRS>
                 </inspire_dls:SupportedCRS>
             </inspire_dls:ExtendedCapabilities>
         </ows:ExtendedCapabilities>
@@ -588,39 +573,7 @@
     </sos:filterCapabilities>
     <sos:contents>
         <sos:Contents>
-            <swes:offering>
-                <sos:ObservationOffering xmlns:ns="http://www.opengis.net/sos/2.0">
-                    <swes:identifier>offering:$uri$/observations</swes:identifier>
-                    <swes:name codeSpace="eng">offeringID</swes:name>
-                    <swes:extension>
-                        <inspire_common:SupportedLanguages
-                            xmlns:inspire_common="http://inspire.ec.europa.eu/schemas/common/1.0">
-                            <inspire_common:DefaultLanguage>
-                                <inspire_common:Language>eng</inspire_common:Language>
-                            </inspire_common:DefaultLanguage>
-                        </inspire_common:SupportedLanguages>
-                    </swes:extension>
-                    <swes:extension>
-                    <!-- TODO: tenere solo CRS di iNat -->
-                        <inspire_dls:SupportedCRS
-                            xmlns:inspire_dls="http://inspire.ec.europa.eu/schemas/inspire_dls/1.0">
-                            <inspire_dls:DefaultCRS>http://www.opengis.net/def/crs/EPSG/0/4326</inspire_dls:DefaultCRS>
-                            <inspire_dls:OtherCRS>http://www.opengis.net/def/crs/EPSG/0/4258</inspire_dls:OtherCRS>
-                            <inspire_dls:OtherCRS>http://www.opengis.net/def/crs/EPSG/0/4979</inspire_dls:OtherCRS>
-                            <inspire_dls:OtherCRS>http://www.opengis.net/def/crs/EPSG/0/31466</inspire_dls:OtherCRS>
-                            <inspire_dls:OtherCRS>http://www.opengis.net/def/crs/EPSG/0/31467</inspire_dls:OtherCRS>
-                        </inspire_dls:SupportedCRS>
-                    </swes:extension>
-                    <swes:procedure>$uri$</swes:procedure>
-                    <swes:procedureDescriptionFormat>http://www.opengis.net/sensorml/2.0</swes:procedureDescriptionFormat>
-                    <swes:observableProperty>http://rs.tdwg.org/dwc/terms/taxonID</swes:observableProperty>
-                    <swes:observableProperty>http://rs.tdwg.org/dwc/terms/associatedMedia</swes:observableProperty>
-                    <!--  <sos:responseFormat>application/json</sos:responseFormat> -->
-                    <sos:responseFormat>http://www.opengis.net/om/2.0</sos:responseFormat>
-                    <sos:observationType>http://www.opengis.net/def/observationType/OGC-OM/2.0/OM_CategoryObservation</sos:observationType>
-                    <sos:featureOfInterestType>http://www.opengis.net/def/samplingFeatureType/OGC-OM/2.0/SF_SamplingPoint</sos:featureOfInterestType>
-                </sos:ObservationOffering>
-            </swes:offering>
+			$offerings$
 
         </sos:Contents>
     </sos:contents>

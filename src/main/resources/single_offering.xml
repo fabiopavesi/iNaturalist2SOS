@@ -1,0 +1,29 @@
+<swes:offering>
+    <sos:ObservationOffering xmlns:ns="http://www.opengis.net/sos/2.0">
+        <swes:identifier>offering:$uri$/observations</swes:identifier>
+        <swes:name codeSpace="eng">offeringID</swes:name>
+        <swes:extension>
+            <inspire_common:SupportedLanguages
+                xmlns:inspire_common="http://inspire.ec.europa.eu/schemas/common/1.0">
+                <inspire_common:DefaultLanguage>
+                    <inspire_common:Language>eng</inspire_common:Language>
+                </inspire_common:DefaultLanguage>
+            </inspire_common:SupportedLanguages>
+        </swes:extension>
+        <swes:extension>
+        <!-- TODO: tenere solo CRS di iNat -->
+            <inspire_dls:SupportedCRS
+                xmlns:inspire_dls="http://inspire.ec.europa.eu/schemas/inspire_dls/1.0">
+                <inspire_dls:DefaultCRS>http://www.opengis.net/def/crs/EPSG/0/4326</inspire_dls:DefaultCRS>
+            </inspire_dls:SupportedCRS>
+        </swes:extension>
+        <swes:procedure>$uri$</swes:procedure>
+        <swes:procedureDescriptionFormat>http://www.opengis.net/sensorml/2.0</swes:procedureDescriptionFormat>
+        <swes:observableProperty>http://rs.tdwg.org/dwc/terms/taxonID</swes:observableProperty>
+        <swes:observableProperty>http://rs.tdwg.org/dwc/terms/associatedMedia</swes:observableProperty>
+        <!--  <sos:responseFormat>application/json</sos:responseFormat> -->
+        <sos:responseFormat>http://www.opengis.net/om/2.0</sos:responseFormat>
+        <sos:observationType>http://www.opengis.net/def/observationType/OGC-OM/2.0/OM_CategoryObservation</sos:observationType>
+        <sos:featureOfInterestType>http://www.opengis.net/def/samplingFeatureType/OGC-OM/2.0/SF_SamplingPoint</sos:featureOfInterestType>
+    </sos:ObservationOffering>
+</swes:offering>

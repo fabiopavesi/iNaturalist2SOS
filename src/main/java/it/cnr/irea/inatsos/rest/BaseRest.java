@@ -2,6 +2,7 @@ package it.cnr.irea.inatsos.rest;
 
 import java.io.IOException;
 import java.util.List;
+
 import javax.persistence.EntityManager;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import it.cnr.irea.inatsos.dto.ProjectMemberDTO;
 import it.cnr.irea.inatsos.model.Observation;
 import it.cnr.irea.inatsos.model.User;
 import it.cnr.irea.inatsos.service.MainService;
@@ -69,6 +71,11 @@ public class BaseRest {
 	@RequestMapping(method=RequestMethod.GET, value="/observations", produces=MediaType.APPLICATION_JSON_VALUE)
 	public List<Observation> getObservations() {
 		return em.createNamedQuery("Observation.findAll", Observation.class).getResultList();
+	}
+	
+	@RequestMapping(method=RequestMethod.GET, value="/project-members", produces=MediaType.APPLICATION_JSON_VALUE)
+	public ProjectMemberDTO[] getProjectMembers() {
+		return service.retrieveAllUsers();
 	}
 
 }
