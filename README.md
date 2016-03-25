@@ -1,2 +1,3 @@
 # iNaturalist2SOS
-The purpose is to harvest observations and their related users from iNaturalist and to thereby feed an SOS service.
+Its purpose is to act as an adapter between the iNaturalist APIs and a standard OGC SOS interface.
+Standard SOS 2.0 requests, such as GetCapabilities, DescribeSensor and GetObservation can be issued.
