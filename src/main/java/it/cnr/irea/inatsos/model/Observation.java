@@ -109,8 +109,44 @@ public class Observation {
     
     @ManyToOne
     private Harvest harvest;
-    
-    public Harvest getHarvest() {
+        
+	private String squareUrl;
+	private String thumbUrl;
+	private String smallUrl;
+	private String mediumUrl;
+	private String largeUrl;
+
+    public String getSquareUrl() {
+		return squareUrl;
+	}
+	public void setSquareUrl(String squareUrl) {
+		this.squareUrl = squareUrl;
+	}
+	public String getThumbUrl() {
+		return thumbUrl;
+	}
+	public void setThumbUrl(String thumbUrl) {
+		this.thumbUrl = thumbUrl;
+	}
+	public String getSmallUrl() {
+		return smallUrl;
+	}
+	public void setSmallUrl(String smallUrl) {
+		this.smallUrl = smallUrl;
+	}
+	public String getMediumUrl() {
+		return mediumUrl;
+	}
+	public void setMediumUrl(String mediumUrl) {
+		this.mediumUrl = mediumUrl;
+	}
+	public String getLargeUrl() {
+		return largeUrl;
+	}
+	public void setLargeUrl(String largeUrl) {
+		this.largeUrl = largeUrl;
+	}
+	public Harvest getHarvest() {
 		return harvest;
 	}
 	public void setHarvest(Harvest harvest) {

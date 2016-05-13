@@ -138,6 +138,7 @@ public class MainService {
 		restTemplate.setInterceptors(ris);
 		restTemplate.setRequestFactory(new BufferingClientHttpRequestFactory(new SimpleClientHttpRequestFactory()));
 		Observation[] observations = (Observation[]) restTemplate.getForObject(url, Observation[].class);
+
 		return observations;
 	}
 	
@@ -309,7 +310,7 @@ public class MainService {
 		try {
 			f = c.getDeclaredField(field);
 			f.setAccessible(true);
-			log.info("field " + field + " is " + f.getType().getName());
+			// log.info("field " + field + " is " + f.getType().getName());
 			return f.getType();
 		} catch (NoSuchFieldException e) {
 			// TODO Auto-generated catch block
@@ -326,7 +327,7 @@ public class MainService {
 	}
 	
 	public String fillInSensor(User user) throws IOException {
-		DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mmZ");
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
 		String result = "";
 		URL url = this.getClass().getClassLoader().getResource("DescribeSensor_Response.xml");
 		log.info(url.getPath());
@@ -363,7 +364,7 @@ public class MainService {
 	}
 	
 	public String fillInSensor(String xml, User user) {
-		DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mmZ");
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
 		Pattern pattern = Pattern.compile("\\$([a-zA-Z0-9_]+)\\$");
 		Matcher m = pattern.matcher(xml);
 		
@@ -387,7 +388,18 @@ public class MainService {
 	}
 	
 	public String fillInObservation(Observation observation) throws IOException {
-		DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mmZ");
+		
+		if ( observation.getPhotos() != null && observation.getPhotos().size() > 0 ) {
+			log.info("picture " + observation.getPhotos().get(0).getThumbUrl());
+			observation.setThumbUrl(observation.getPhotos().get(0).getThumbUrl());
+			observation.setSquareUrl(observation.getPhotos().get(0).getSquareUrl());
+			observation.setSmallUrl(observation.getPhotos().get(0).getSmallUrl());
+			observation.setMediumUrl(observation.getPhotos().get(0).getMediumUrl());
+			observation.setLargeUrl(observation.getPhotos().get(0).getLargeUrl());
+			log.info("picture destination " + observation.getThumbUrl());
+		}
+
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
 		String result = "";
 		URL url = this.getClass().getClassLoader().getResource("single_observation.xml");
 		log.info(url.getPath());

@@ -59,7 +59,7 @@ public class SOSRest {
 		System.out.println(dtoString);
 		
 		JAXBContext jc = null;
-		if ( dtoString.contains("<sos:DescribeSensor") ) {
+		if ( dtoString.contains("<swes:DescribeSensor") ) {
 			jc = JAXBContext.newInstance(DescribeSensorRequestDTO.class, ExceptionReport.class);
 		} else if ( dtoString.contains("<sos:GetObservation") ) {
 			jc = JAXBContext.newInstance(GetObservationRequestDTO.class, ExceptionReport.class);
@@ -69,6 +69,7 @@ public class SOSRest {
 			e.exceptionText = "This service cannot recognize this request";
 			ExceptionReport r = new ExceptionReport();
 			r.exception = e;
+			
 		}
 		//Create unmarshaller
 		Unmarshaller um = (Unmarshaller) jc.createUnmarshaller();

@@ -12,7 +12,7 @@
             <swes:data>
                 <sml:PhysicalSystem xmlns:sml="http://www.opengis.net/sensorml/2.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:swe="http://www.opengis.net/swe/2.0" gml:id="ps_03B07A61E9FAB0FE3665F5C300752024CFFFDB45">
                     <!--Unique identifier-->
-                    <gml:identifier codeSpace="uniqueID">$uri$/gml:identifier>
+                    <gml:identifier codeSpace="uniqueID">$uri$</gml:identifier>
                     <sml:keywords>
                         <sml:KeywordList>
                             <sml:keyword>$uri$</sml:keyword>
