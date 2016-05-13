@@ -1,0 +1,54 @@
+<html>
+<head>
+<script src="js/jquery.js"></script>
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+<script src="https://cdn.rawgit.com/google/code-prettify/master/src/prettify.js"></script>
+<script>
+console.log("0");
+$(document).ready(function() {
+	$("#tasto").click(function() {
+		// event.preventDefault();
+		console.log("1");
+		$.ajax({
+		    url: "pox",
+		    data: $('#xml').val(), 
+		    type: 'POST',
+		    contentType: "application/xml",
+		    dataType: "text",
+		    success : parse,
+		    error : function (xhr, ajaxOptions, thrownError){  
+		        console.log(xhr.status);          
+		        console.log(thrownError);
+		    } 
+		}); 
+		function parse(data) {
+		    $("#result").html('<textarea class="">' + data.toString() + '</textarea>');
+		    prettyPrint();
+		}
+		/*
+		  $.post("pox", { 'data': $('#xml').val }, function(data){ 
+				console.log("2");
+		    // callback logic
+		    $("#result").val() = data;
+		  });
+		*/
+		  return false;
+		});
+});
+</script>
+<style>
+textarea {
+	width: 100%;
+	height: 25%;
+}
+</style>
+</head>
+<body>
+	<form id="myform">
+		<textarea id="xml"></textarea>
+		<input type="button" id="tasto" value="POST">
+	</form>
+	
+	<div id="result"></div>
+</body>
+</html>

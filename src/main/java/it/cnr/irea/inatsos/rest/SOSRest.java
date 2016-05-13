@@ -26,6 +26,9 @@ import it.cnr.irea.inatsos.dto.DescribeSensorRequestDTO;
 import it.cnr.irea.inatsos.dto.Exception;
 import it.cnr.irea.inatsos.dto.ExceptionReport;
 import it.cnr.irea.inatsos.dto.GenericResponse;
+import it.cnr.irea.inatsos.dto.GetFoiRequestDTO;
+import it.cnr.irea.inatsos.dto.GetObservationRequestDTO;
+import it.cnr.irea.inatsos.model.Observation;
 import it.cnr.irea.inatsos.model.User;
 import it.cnr.irea.inatsos.service.MainService;
 
@@ -38,11 +41,35 @@ public class SOSRest {
 	public String getCapabilities() throws IOException {
 		return service.getCapabilities();
 	}
-	@RequestMapping(method=RequestMethod.POST, value="/service", consumes=MediaType.APPLICATION_XML_VALUE, produces=MediaType.APPLICATION_XML_VALUE)
+	
+	@RequestMapping(method=RequestMethod.GET, value="/observations", produces=MediaType.APPLICATION_XML_VALUE)
+	public String getObservations() throws IOException {
+		Observation[] observations = service.retrieveAllObservations();
+		
+		return service.fillInObservations(observations);
+	}
+	
+	@RequestMapping(method=RequestMethod.POST, value="/test", consumes=MediaType.APPLICATION_XML_VALUE, produces=MediaType.APPLICATION_XML_VALUE)
+	public GetFoiRequestDTO test(@RequestBody GetFoiRequestDTO in) {
+		return in;
+	}
+	
+	@RequestMapping(method=RequestMethod.POST, value="/pox", consumes=MediaType.APPLICATION_XML_VALUE, produces=MediaType.APPLICATION_XML_VALUE)
 	public String describeSensor(@RequestBody String dtoString) throws JAXBException, XmlMappingException, UnsupportedEncodingException, IOException {
 		System.out.println(dtoString);
 		
-		JAXBContext jc = JAXBContext.newInstance(DescribeSensorRequestDTO.class, ExceptionReport.class);
+		JAXBContext jc = null;
+		if ( dtoString.contains("<sos:DescribeSensor") ) {
+			jc = JAXBContext.newInstance(DescribeSensorRequestDTO.class, ExceptionReport.class);
+		} else if ( dtoString.contains("<sos:GetObservation") ) {
+			jc = JAXBContext.newInstance(GetObservationRequestDTO.class, ExceptionReport.class);
+		} else {
+			Exception e = new Exception();
+			e.exceptionCode = "UnknownRequest";
+			e.exceptionText = "This service cannot recognize this request";
+			ExceptionReport r = new ExceptionReport();
+			r.exception = e;
+		}
 		//Create unmarshaller
 		Unmarshaller um = (Unmarshaller) jc.createUnmarshaller();
 		Object dto = um.unmarshal(new ByteArrayInputStream(dtoString.getBytes("utf-8")));
@@ -53,6 +80,10 @@ public class SOSRest {
 			String s = service.fillInSensor(u);
 			return s;
 //			return new ResponseEntity<GenericResponse>((DescribeSensorRequestDTO)dto, HttpStatus.OK);
+		} else if ( dto instanceof GetObservationRequestDTO ) {
+			Observation[] observations = service.retrieveAllObservations((GetObservationRequestDTO) dto);
+			
+			return service.fillInObservations(observations);
 		}
 		
 		Exception e = new Exception();

@@ -1,0 +1,23 @@
+<sos:observationData>
+  <om:OM_Observation gml:id="o_$id$">
+    <om:type
+      xlink:href="http://www.opengis.net/def/observationType/OGC-OM/2.0/OM_CategoryObservation"/>
+    <om:phenomenonTime>
+      <gml:TimeInstant gml:id="phenomenonTime_$id$">
+        <gml:timePosition>$createdAt$</gml:timePosition>
+      </gml:TimeInstant>
+    </om:phenomenonTime>
+    <om:resultTime>
+      <gml:TimeInstant gml:id="ti_$id$">
+        <gml:timePosition>$updatedAt$</gml:timePosition>
+      </gml:TimeInstant>
+    </om:resultTime>
+    <om:procedure xlink:href="https://www.inaturalist.org/users/$userId$"/>
+    <om:observedProperty xlink:href="http://rs.tdwg.org/dwc/terms/scientificName"/>
+    <om:featureOfInterest
+      xlink:href="http://sp7.irea.cnr.it/sensors/foi/SSF/SP/EPSG:4326/$latitude$/$longitude$"
+      xlink:title="$placeGuess$"/>
+    <om:result xmlns:ns="http://www.opengis.net/gml/3.2"
+      xlink:href="http://www.inaturalist.org/taxa/$taxonId$" xsi:type="ns:ReferenceType"/>
+  </om:OM_Observation>
+</sos:observationData>

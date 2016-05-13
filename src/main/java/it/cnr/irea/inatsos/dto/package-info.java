@@ -2,12 +2,13 @@
     elementFormDefault=XmlNsForm.QUALIFIED,
     namespace="http://www.opengis.net/swe/2.0",
     xmlns={
-    		@XmlNs(prefix="swes",
-                  namespaceURI="http://www.opengis.net/swes/2.0"),
+    		@XmlNs(prefix="swes", namespaceURI="http://www.opengis.net/swes/2.0"),
     		@XmlNs(prefix="xsi", namespaceURI="http://www.w3.org/2001/XMLSchema-instance"),	
     		@XmlNs(prefix="gml", namespaceURI="http://www.opengis.net/gml/3.2"),	
     		@XmlNs(prefix="swe", namespaceURI="http://www.opengis.net/swe/2.0"),	
-    		@XmlNs(prefix="ows", namespaceURI="http://www.opengis.net/ows/1.1")	
+    		@XmlNs(prefix="ows", namespaceURI="http://www.opengis.net/ows/1.1"),	
+    		@XmlNs(prefix="sos", namespaceURI="http://www.opengis.net/sos/2.0"),
+    		@XmlNs(prefix="fes", namespaceURI="http://www.opengis.net/fes/2.0")	
     }
 )
 package it.cnr.irea.inatsos.dto;
