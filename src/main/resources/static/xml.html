@@ -84,6 +84,17 @@ Sensor Observation Service">OGC SOS</a> v2.0.0.</p>
         <div id="result"></div>
 
         <script>
+            $.get(value).success(function(response) {
+                // Function to get selected value.
+                $('#selected_value').click(function() {
+                    $('#result').empty();
+                    var value = $("#select_option option:selected").val();
+                    $("#result").value = response;
+                })
+            });
+        </script>
+
+        <script>
             console.log("0");
             $(document).ready(function () {
                 $("#tasto").click(function () {
