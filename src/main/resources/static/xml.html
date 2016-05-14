@@ -64,10 +64,19 @@ Sensor Observation Service">OGC SOS</a> interface
             </div>
         </div>
 
-        <p>Copy and paste your xml request and press post button for obtain response observations from <a
+        <p>Write your XML request and press post button for obtain observations from <a
                 href="http://www.inaturalist.org/" title="iNaturalist.org">iNaturalist</a> adapted in <a
                 href="http://www.opengeospatial.org/standards/sos" title="
 Sensor Observation Service">OGC SOS</a> v2.0.0.</p>
+
+        <p>
+            <select id="requests">
+                <!--option value="getCap">Get Capabilities</option-->
+                <option value="test/getFOI.xml">Get Feature Of Interest</option>
+                <option value="test/getObsUser.xml">GetObservation By User</option>
+                <option value="test/getObsBBox.xml">GetObservation By BBox</option>
+            </select>
+        </p>
 
         <form id="myform"><textarea id="code" name="code"><!-- write some xml below -->
 </textarea><input type="button" id="tasto" value="POST"></form>
