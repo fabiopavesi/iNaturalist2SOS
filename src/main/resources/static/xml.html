@@ -12,42 +12,47 @@
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-    <!--link rel=stylesheet href="../doc/docs.css"-->
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<!--link rel=stylesheet href="../doc/docs.css"-->
 
-    <link rel="stylesheet" href="css/codemirror.css">
-    <link rel="stylesheet" href="css/show-hint.css">
-    <script src="js/jquery.js"></script>
-    <script src="js/codemirror.js"></script>
-    <script src="js/show-hint.js"></script>
-    <script src="js/xml-hint.js"></script>
-    <script src="js/xml.js"></script>
+<link rel="stylesheet" href="css/codemirror.css">
+<link rel="stylesheet" href="css/show-hint.css">
+<script src="js/jquery.js"></script>
+<script src="js/codemirror.js"></script>
+<script src="js/show-hint.js"></script>
+<!--script src="js/xml-hint.js"></script-->
+<script src="js/xml.js"></script>
 
-    <style type="text/css">
-        .CodeMirror {
-            border: 1px solid #eee;
-        }
-    </style>
-    <style type="text/css">
-        body {
-            padding-top: 1em;
-        }
+<style type="text/css">
+    .CodeMirror {
+        border: 1px solid #eee;
+    }
+</style>
+<style type="text/css">
+    body {
+        padding-top: 1em;
+    }
 
-        textarea {
-            height: 25%;
-        }
-    </style>
+    textarea {
+        height: 25%;
+    }
+</style>
 <body>
-    <article>
-        <div class="container">
+<article>
+    <div class="container">
 
-            <!-- Jumbotron -->
-            <div class="jumbotron">
+        <!-- Jumbotron -->
+        <div class="jumbotron">
+            <div class="container">
                 <!--h2>Geoinformation Enabling ToolkIT starterkit<sup>&REG;</sup></h2-->
-
-                <h1>iNaturalist2SOS</h1>
-
-                <p class="lead">Adapter between the <a href="http://www.inaturalist.org/" title="iNaturalist.org">iNaturalist</a>
+                <h1 class="col-lg-6 col-md-6">iNaturalist2SOS</h1>
+                <p align="right">
+                    <a href="http://www.irea.cnr.it" target="_blank">
+                        <img src="http://www.intercoast.eu/images/logo_irea.jpg" width="100px" alt="CNR - IREA">
+                    </a>
+                </p>
+                <p class="lead">Adapter between the <a href="http://www.inaturalist.org/"
+                                                       title="iNaturalist.org">iNaturalist</a>
                     APIs and a standard <a href="http://www.opengeospatial.org/standards/sos" title="
 Sensor Observation Service">OGC SOS</a> interface
                 </p>
@@ -57,144 +62,145 @@ Sensor Observation Service">OGC SOS</a> interface
                     code</a></p>
                 <!--p class="col-lg-6 col-md-6"><a target="_blank" href="credits.html">Credits</a></p-->
             </div>
+        </div>
 
-            <p>Copy and paste your xml request and press post button for obtain response observations from <a
-                    href="http://www.inaturalist.org/" title="iNaturalist.org">iNaturalist</a> adapted in <a
-                    href="http://www.opengeospatial.org/standards/sos" title="
+        <p>Copy and paste your xml request and press post button for obtain response observations from <a
+                href="http://www.inaturalist.org/" title="iNaturalist.org">iNaturalist</a> adapted in <a
+                href="http://www.opengeospatial.org/standards/sos" title="
 Sensor Observation Service">OGC SOS</a> v2.0.0.</p>
 
-            <form id="myform"><textarea id="code" name="code"><!-- write some xml below -->
+        <form id="myform"><textarea id="code" name="code"><!-- write some xml below -->
 </textarea><input type="button" id="tasto" value="POST"></form>
 
-            <div id="result"></div>
+        <div id="result"></div>
 
-            <script>
-                console.log("0");
-                $(document).ready(function () {
-                    $("#tasto").click(function () {
-                        // event.preventDefault();
-                        console.log("1");
-                        $.ajax({
-                            url: "pox",
-                            data: $('#code').val(),
-                            type: 'POST',
-                            contentType: "application/xml",
-                            dataType: "text",
-                            success: parse,
-                            error: function (xhr, ajaxOptions, thrownError) {
-                                console.log(xhr.status);
-                                console.log(thrownError);
-                            }
-                        });
-                        function parse(data) {
-                            $("#result").html('<textarea class="">' + data.toString() + '</textarea>');
-                            /*prettyPrint();*/
+        <script>
+            console.log("0");
+            $(document).ready(function () {
+                $("#tasto").click(function () {
+                    // event.preventDefault();
+                    console.log("1");
+                    $.ajax({
+                        url: "pox",
+                        data: $('#code').val(),
+                        type: 'POST',
+                        contentType: "application/xml",
+                        dataType: "text",
+                        success: parse,
+                        error: function (xhr, ajaxOptions, thrownError) {
+                            console.log(xhr.status);
+                            console.log(thrownError);
                         }
-
-                        /*
-                         $.post("pox", { 'data': $('#xml').val }, function(data){
-                         console.log("2");
-                         // callback logic
-                         $("#result").val() = data;
-                         });
-                         */
-                        return false;
                     });
-                });
-            </script>
+                    function parse(data) {
+                        $("#result").html('<textarea class="">' + data.toString() + '</textarea>');
+                        /*prettyPrint();*/
+                    }
 
-            <script>
-                var dummy = {
+                    /*
+                     $.post("pox", { 'data': $('#xml').val }, function(data){
+                     console.log("2");
+                     // callback logic
+                     $("#result").val() = data;
+                     });
+                     */
+                    return false;
+                });
+            });
+        </script>
+
+        <script>
+            var dummy = {
+                attrs: {
+                    color: ["red", "green", "blue", "purple", "white", "black", "yellow"],
+                    size: ["large", "medium", "small"],
+                    description: null
+                },
+                children: []
+            };
+
+            var tags = {
+                "!top": ["top"],
+                "!attrs": {
+                    id: null,
+                    class: ["A", "B", "C"]
+                },
+                top: {
                     attrs: {
-                        color: ["red", "green", "blue", "purple", "white", "black", "yellow"],
-                        size: ["large", "medium", "small"],
-                        description: null
+                        lang: ["en", "de", "fr", "nl"],
+                        freeform: null
                     },
-                    children: []
-                };
+                    children: ["animal", "plant"]
+                },
+                animal: {
+                    attrs: {
+                        name: null,
+                        isduck: ["yes", "no"]
+                    },
+                    children: ["wings", "feet", "body", "head", "tail"]
+                },
+                plant: {
+                    attrs: {name: null},
+                    children: ["leaves", "stem", "flowers"]
+                },
+                wings: dummy, feet: dummy, body: dummy, head: dummy, tail: dummy,
+                leaves: dummy, stem: dummy, flowers: dummy
+            };
 
-                var tags = {
-                    "!top": ["top"],
-                    "!attrs": {
-                        id: null,
-                        class: ["A", "B", "C"]
-                    },
-                    top: {
-                        attrs: {
-                            lang: ["en", "de", "fr", "nl"],
-                            freeform: null
-                        },
-                        children: ["animal", "plant"]
-                    },
-                    animal: {
-                        attrs: {
-                            name: null,
-                            isduck: ["yes", "no"]
-                        },
-                        children: ["wings", "feet", "body", "head", "tail"]
-                    },
-                    plant: {
-                        attrs: {name: null},
-                        children: ["leaves", "stem", "flowers"]
-                    },
-                    wings: dummy, feet: dummy, body: dummy, head: dummy, tail: dummy,
-                    leaves: dummy, stem: dummy, flowers: dummy
-                };
+            function completeAfter(cm, pred) {
+                var cur = cm.getCursor();
+                if (!pred || pred()) setTimeout(function () {
+                    if (!cm.state.completionActive)
+                        cm.showHint({completeSingle: false});
+                }, 100);
+                return CodeMirror.Pass;
+            }
 
-                function completeAfter(cm, pred) {
+            function completeIfAfterLt(cm) {
+                return completeAfter(cm, function () {
                     var cur = cm.getCursor();
-                    if (!pred || pred()) setTimeout(function () {
-                        if (!cm.state.completionActive)
-                            cm.showHint({completeSingle: false});
-                    }, 100);
-                    return CodeMirror.Pass;
-                }
-
-                function completeIfAfterLt(cm) {
-                    return completeAfter(cm, function () {
-                        var cur = cm.getCursor();
-                        return cm.getRange(CodeMirror.Pos(cur.line, cur.ch - 1), cur) == "<";
-                    });
-                }
-
-                function completeIfInTag(cm) {
-                    return completeAfter(cm, function () {
-                        var tok = cm.getTokenAt(cm.getCursor());
-                        if (tok.type == "string" && (!/['"]/.test(tok.string.charAt(tok.string.length - 1)) || tok.string.length == 1)) return false;
-                        var inner = CodeMirror.innerMode(cm.getMode(), tok.state).state;
-                        return inner.tagName;
-                    });
-                }
-
-                var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
-                    mode: "xml",
-                    lineNumbers: true,
-                    extraKeys: {
-                        "'<'": completeAfter,
-                        "'/'": completeIfAfterLt,
-                        "' '": completeIfInTag,
-                        "'='": completeIfInTag,
-                        "Ctrl-Space": "autocomplete"
-                    },
-                    hintOptions: {schemaInfo: tags}
+                    return cm.getRange(CodeMirror.Pos(cur.line, cur.ch - 1), cur) == "<";
                 });
-            </script>
+            }
 
-            <!-- Site footer -->
-            <footer class="footer">
-                <hr>
-                <!--div class="col-lg-6">
-                    <p>2015 <a href="http://www.get-it.it" target="_blank">Geoinformation Enabling ToolkIT
-                        starterkit<sup>&REG;</sup></a></p>
-                </div-->
-                <div class="col-lg-6">
-                    <p>Icons by <a href="http://fontawesome.io/" target="_blank">Font Awesome</a></p>
-                </div>
-                <div class="col-lg-6">
-                    <p>Code-editor component by <a href="http://codemirror.net/" target="_blank">CodeMirror</a></p>
-                </div>
-            </footer>
-        </div>
-    </article>
+            function completeIfInTag(cm) {
+                return completeAfter(cm, function () {
+                    var tok = cm.getTokenAt(cm.getCursor());
+                    if (tok.type == "string" && (!/['"]/.test(tok.string.charAt(tok.string.length - 1)) || tok.string.length == 1)) return false;
+                    var inner = CodeMirror.innerMode(cm.getMode(), tok.state).state;
+                    return inner.tagName;
+                });
+            }
+
+            var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+                mode: "xml",
+                lineNumbers: true,
+                extraKeys: {
+                    "'<'": completeAfter,
+                    "'/'": completeIfAfterLt,
+                    "' '": completeIfInTag,
+                    "'='": completeIfInTag,
+                    "Ctrl-Space": "autocomplete"
+                },
+                hintOptions: {schemaInfo: tags}
+            });
+        </script>
+
+        <!-- Site footer -->
+        <footer class="footer">
+            <hr>
+            <!--div class="col-lg-6">
+                <p>2015 <a href="http://www.get-it.it" target="_blank">Geoinformation Enabling ToolkIT
+                    starterkit<sup>&REG;</sup></a></p>
+            </div-->
+            <div class="col-lg-6">
+                <p>Icons by <a href="http://fontawesome.io/" target="_blank">Font Awesome</a></p>
+            </div>
+            <div class="col-lg-6">
+                <p>Code-editor component by <a href="http://codemirror.net/" target="_blank">CodeMirror</a></p>
+            </div>
+        </footer>
+    </div>
+</article>
 </body>
 </html>
