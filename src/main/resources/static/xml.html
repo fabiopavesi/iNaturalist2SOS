@@ -9,15 +9,15 @@
     <meta name="author" content="Alessandro Oggioni">
     <title>iNaturalist2SOS</title>
 
-    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
 <!--link rel=stylesheet href="../doc/docs.css"-->
 
 <link rel="stylesheet" href="css/codemirror.css">
 <link rel="stylesheet" href="css/show-hint.css">
 <script src="js/jquery.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
 <script src="js/codemirror.js"></script>
 <script src="js/show-hint.js"></script>
 <!--script src="js/xml-hint.js"></script-->
@@ -48,10 +48,10 @@
                 <h1 class="col-lg-6 col-md-6">iNaturalist2SOS</h1>
                 <p align="right">
                     <a href="http://www.irea.cnr.it" target="_blank">
-                        <img src="http://www.intercoast.eu/images/logo_irea.jpg" width="100px" alt="CNR - IREA">
+                        <img src="//www.intercoast.eu/images/logo_irea.jpg" width="100px" alt="CNR - IREA">
                     </a>
                 </p>
-                <p class="lead">Adapter between the <a href="http://www.inaturalist.org/"
+                <p class="lead">Adapter between the <a href="//www.inaturalist.org/"
                                                        title="iNaturalist.org">iNaturalist</a>
                     APIs and a standard <a href="http://www.opengeospatial.org/standards/sos" title="
 Sensor Observation Service">OGC SOS</a> interface
@@ -84,6 +84,7 @@ Sensor Observation Service">OGC SOS</a> v2.0.0.</p>
         <div id="result"></div>
 
         <script>
+            /*
             $.get(value).success(function(response) {
                 // Function to get selected value.
                 $('#selected_value').click(function() {
@@ -92,11 +93,59 @@ Sensor Observation Service">OGC SOS</a> v2.0.0.</p>
                     $("#result").value = response;
                 })
             });
+            */
+            CodeMirror.defineExtension("autoFormatRange", function (from, to) {
+                var cm = this;
+                var outer = cm.getMode(), text = cm.getRange(from, to).split("\n");
+                var state = CodeMirror.copyState(outer, cm.getTokenAt(from).state);
+                var tabSize = cm.getOption("tabSize");
+
+                var out = "", lines = 0, atSol = from.ch == 0;
+                function newline() {
+                    out += "\n";
+                    atSol = true;
+                    ++lines;
+                }
+
+                for (var i = 0; i < text.length; ++i) {
+                    var stream = new CodeMirror.StringStream(text[i], tabSize);
+                    while (!stream.eol()) {
+                        var inner = CodeMirror.innerMode(outer, state);
+                        var style = outer.token(stream, state), cur = stream.current();
+                        stream.start = stream.pos;
+                        if (!atSol || /\S/.test(cur)) {
+                            out += cur;
+                            atSol = false;
+                        }
+                        if (!atSol && inner.mode.newlineAfterToken &&
+                                inner.mode.newlineAfterToken(style, cur, stream.string.slice(stream.pos) || text[i+1] || "", inner.state))
+                            newline();
+                    }
+                    if (!stream.pos && outer.blankLine) outer.blankLine(state);
+                    if (!atSol) newline();
+                }
+
+                cm.operation(function () {
+                    cm.replaceRange(out, from, to);
+                    for (var cur = from.line + 1, end = from.line + lines; cur <= end; ++cur)
+                        cm.indentLine(cur, "smart");
+                });
+            });
         </script>
 
         <script>
             console.log("0");
             $(document).ready(function () {
+                $("#requests").change(function() {
+                    console.log($("#requests option:selected").val());
+                    var requestUrl = $("#requests option:selected").val();
+                    $.get(requestUrl).success(function(data) {
+                        console.log(data);
+                        var xmlString = new XMLSerializer().serializeToString(data);
+                        $("#code").val(xmlString);
+                        editor.getDoc().setValue(xmlString);
+                    });
+                });
                 $("#tasto").click(function () {
                     // event.preventDefault();
                     console.log("1");
@@ -113,8 +162,23 @@ Sensor Observation Service">OGC SOS</a> v2.0.0.</p>
                         }
                     });
                     function parse(data) {
-                        $("#result").html('<textarea class="">' + data.toString() + '</textarea>');
+                        $("#result").html('<textarea id="resultText" class="">' + data.toString() + '</textarea>');
                         /*prettyPrint();*/
+                        var resultEditor = CodeMirror.fromTextArea(document.getElementById("resultText"), {
+                            mode: "xml",
+                            lineNumbers: true,
+                            extraKeys: {
+                                "'<'": completeAfter,
+                                "'/'": completeIfAfterLt,
+                                "' '": completeIfInTag,
+                                "'='": completeIfInTag,
+                                "Ctrl-Space": "autocomplete"
+                            },
+                            hintOptions: {schemaInfo: tags}
+                        });
+                        var totalLines = editor.lineCount();
+                        resultEditor.autoFormatRange({line:0, ch:0}, {line:totalLines});
+                        // resultEditor.autoFormatRange({line:0, ch:0}, {line:totalLines, ch:totalChars});
                     }
 
                     /*

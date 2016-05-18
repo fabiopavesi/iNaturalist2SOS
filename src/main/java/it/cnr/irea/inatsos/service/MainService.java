@@ -1,5 +1,6 @@
 package it.cnr.irea.inatsos.service;
 
+import it.cnr.irea.inatsos.dto.GetFoiRequestDTO;
 import it.cnr.irea.inatsos.dto.GetObservationRequestDTO;
 import it.cnr.irea.inatsos.dto.ProjectMemberDTO;
 import it.cnr.irea.inatsos.model.Harvest;
@@ -89,7 +90,7 @@ public class MainService {
 	}
 	
 	public ProjectMemberDTO[] retrieveAllUsers() {
-		String encodedCredentials = "";
+		String encodedCredentials = getSetting("credentials");
 		RestTemplate restTemplate = new RestTemplate();
 		String url = "https://www.inaturalist.org/projects/lter-italy/members?format=json";
 		final HttpHeaders headers = new HttpHeaders();
@@ -117,8 +118,10 @@ public class MainService {
 	
 	public Observation[] retrieveAllObservations(GetObservationRequestDTO dto) {
 		String filter = "";
+		String userName = null;
 		if ( dto.procedure != null ) {
-			// filter += dto.procedure.substring(dto.procedure.lastIndexOf("/") + 1);
+			
+			userName = dto.procedure.substring(dto.procedure.lastIndexOf("/") + 1);
 		}
 		if ( dto.spatialFilter != null ) {
 			String[] lowerCorner = dto.spatialFilter.bbox.envelope.lowerCorner.split(" ");
@@ -139,9 +142,60 @@ public class MainService {
 		restTemplate.setRequestFactory(new BufferingClientHttpRequestFactory(new SimpleClientHttpRequestFactory()));
 		Observation[] observations = (Observation[]) restTemplate.getForObject(url, Observation[].class);
 
+		if ( userName != null ) {
+			ArrayList<Observation> filtered = new ArrayList<>();
+			for ( Observation o : observations ) {
+				if ( o.getUserLogin().equalsIgnoreCase(userName) ) {
+					filtered.add(o);
+				}
+			}
+			observations = filtered.toArray(new Observation[0]);
+		}
 		return observations;
 	}
-	
+
+	public Observation[] retrieveAllObservations(GetFoiRequestDTO dto) {
+		String filter = "";
+		String userName = null;
+		/*
+		if ( dto.procedure != null ) {
+			
+			userName = dto.procedure.substring(dto.procedure.lastIndexOf("/") + 1);
+		}
+		*/
+		if ( dto.spatialFilter != null ) {
+			String[] lowerCorner = dto.spatialFilter.bbox.envelope.lowerCorner.split(" ");
+			String[] upperCorner = dto.spatialFilter.bbox.envelope.upperCorner.split(" ");
+			filter += "&swlon=" + lowerCorner[0] + "&swlat=" + lowerCorner[1];
+			filter += "&nelon=" + upperCorner[0] + "&nelat=" + upperCorner[1];
+		}
+		String url = "http://www.inaturalist.org/observations/?quality_grade=any&per_page=200&identifications=any&projects[]=lter-italy&extra=fields&has[]=photos&has[]=geo" + filter + "&format=json";
+
+		System.out.println(url);
+		
+		RestTemplate restTemplate = new RestTemplate();
+		//set interceptors/requestFactory
+		ClientHttpRequestInterceptor ri = new LoggingRequestInterceptor();
+		List<ClientHttpRequestInterceptor> ris = new ArrayList<ClientHttpRequestInterceptor>();
+		ris.add(ri);
+		restTemplate.setInterceptors(ris);
+		restTemplate.setRequestFactory(new BufferingClientHttpRequestFactory(new SimpleClientHttpRequestFactory()));
+		Observation[] observations = (Observation[]) restTemplate.getForObject(url, Observation[].class);
+
+		/*
+		if ( userName != null ) {
+			ArrayList<Observation> filtered = new ArrayList<>();
+			for ( Observation o : observations ) {
+				if ( o.getUserLogin().equalsIgnoreCase(userName) ) {
+					filtered.add(o);
+				}
+			}
+			observations = filtered.toArray(new Observation[0]);
+		}
+		*/
+		return observations;
+	}
+
 	public Observation[] retrieveObservations() {
 		log.info("here I am");
 		
@@ -266,6 +320,24 @@ public class MainService {
 		return mainFile;
 	}
 	
+	public String fillInFoi(Observation[] observations) throws IOException {
+		String mainFile = getFileContent("foi_response.xml");
+
+		String obs = "";
+		for ( Observation o : allObservations() ) {
+			try {
+				obs += fillInFoi(o);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		mainFile = mainFile.replace("$foiList$", obs);
+
+		return mainFile;
+	}
+
 	public ArrayList<String> fillInObservations() {
 		ArrayList<String> strings = new ArrayList<String>();
 		for ( Observation o : allObservations() ) {
@@ -402,6 +474,43 @@ public class MainService {
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
 		String result = "";
 		URL url = this.getClass().getClassLoader().getResource("single_observation.xml");
+		log.info(url.getPath());
+		ArrayList<String> tokens = new ArrayList<>();
+		Pattern pattern = Pattern.compile("\\$([a-zA-Z0-9_]+)\\$");
+		
+		BufferedReader file = new BufferedReader(new FileReader(url.getFile()));
+		String s = null;
+		while ( (s = file.readLine()) != null ) {
+			result += s;
+		}
+		
+		Matcher m = pattern.matcher(result);
+		while ( m.find() ) {
+			Object objectValue = getFieldValue(observation, m.group(1));
+			Class objectType = getFieldType(observation, m.group(1));
+			String value = "";
+			if ( objectValue != null ) {
+				if ( objectType.equals(Date.class) ) {
+					log.info("field " + m.group(1) + " is recognized as date");
+					value = df.format(objectValue);
+				} else {
+					value = objectValue.toString();
+				}
+			}
+			// log.info(m.group(1));
+			// log.info(value);
+			result = result.replaceAll("\\$" + m.group(1) + "\\$", value);
+		}
+		
+		log.info(result);
+		
+		return result;
+	}
+
+	public String fillInFoi(Observation observation) throws IOException {
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
+		String result = "";
+		URL url = this.getClass().getClassLoader().getResource("single_foi.xml");
 		log.info(url.getPath());
 		ArrayList<String> tokens = new ArrayList<>();
 		Pattern pattern = Pattern.compile("\\$([a-zA-Z0-9_]+)\\$");

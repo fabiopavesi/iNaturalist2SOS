@@ -53,6 +53,12 @@ public class SOSRest {
 	public GetFoiRequestDTO test(@RequestBody GetFoiRequestDTO in) {
 		return in;
 	}
+
+	@RequestMapping(method=RequestMethod.POST, value="/json", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+	public String jsonInterface(@RequestBody String dtoString) throws JAXBException, XmlMappingException, UnsupportedEncodingException, IOException {
+		
+		return null;
+	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="/pox", consumes=MediaType.APPLICATION_XML_VALUE, produces=MediaType.APPLICATION_XML_VALUE)
 	public String describeSensor(@RequestBody String dtoString) throws JAXBException, XmlMappingException, UnsupportedEncodingException, IOException {
@@ -63,6 +69,8 @@ public class SOSRest {
 			jc = JAXBContext.newInstance(DescribeSensorRequestDTO.class, ExceptionReport.class);
 		} else if ( dtoString.contains("<sos:GetObservation") ) {
 			jc = JAXBContext.newInstance(GetObservationRequestDTO.class, ExceptionReport.class);
+		} else if ( dtoString.contains("<sos:GetFeatureOfInterest") ) {
+			jc = JAXBContext.newInstance(GetFoiRequestDTO.class, ExceptionReport.class);
 		} else {
 			Exception e = new Exception();
 			e.exceptionCode = "UnknownRequest";
@@ -85,6 +93,10 @@ public class SOSRest {
 			Observation[] observations = service.retrieveAllObservations((GetObservationRequestDTO) dto);
 			
 			return service.fillInObservations(observations);
+		} else if ( dto instanceof GetFoiRequestDTO ) {
+			Observation[] observations = service.retrieveAllObservations((GetFoiRequestDTO) dto);
+			
+			return service.fillInFoi(observations);
 		}
 		
 		Exception e = new Exception();
