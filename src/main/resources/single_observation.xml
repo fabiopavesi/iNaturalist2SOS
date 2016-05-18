@@ -15,7 +15,7 @@
     <om:procedure xlink:href="https://www.inaturalist.org/users/$userId$"/>
     <om:observedProperty xlink:href="http://rs.tdwg.org/dwc/terms/taxonID"/>
     <om:featureOfInterest
-      xlink:href="http://sp7.irea.cnr.it/sensors/foi/SSF/SP/EPSG:4326/$latitude$/$longitude$"
+      xlink:href="http://inat2sos.get-it.it/foi/$id$/SSF/SP/EPSG:4326/$latitude$/$longitude$"
       xlink:title="$placeGuess$"/>
     <om:result xmlns:ns="http://www.opengis.net/gml/3.2"
       xlink:href="http://www.inaturalist.org/taxa/$taxonId$" xsi:type="gml:ReferenceType"/>
@@ -38,7 +38,7 @@
     <om:procedure xlink:href="https://www.inaturalist.org/users/$userId$"/>
     <om:observedProperty xlink:href="http://rs.tdwg.org/dwc/terms/associatedMedia"/>
     <om:featureOfInterest
-      xlink:href="http://sp7.irea.cnr.it/sensors/foi/SSF/SP/EPSG:4326/$latitude$/$longitude$"
+      xlink:href="http://inat2sos.get-it.it/foi/$id$/SSF/SP/EPSG:4326/$latitude$/$longitude$"
       xlink:title="$placeGuess$"/>
     <om:result xmlns:ns="http://www.opengis.net/gml/3.2"
       xlink:href="$thumbUrl$" xsi:type="gml:ReferenceType"/>
